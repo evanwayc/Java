@@ -42,7 +42,9 @@ public class n28_4_Main {
         System.out.println("==================");
         
         
-        n28_1_Point testP = new n28_1_Point();
+        n28_1_Point test = new n28_3_Cylinder();
+        
+        test.print();
         
         //n28_2_Circle testC = (n28_2_Circle)testP; //這裡會出錯，因為無法轉換
         
