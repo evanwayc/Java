@@ -3,7 +3,6 @@ package level_2;
 public class n29_1_HW_Level_2 extends n29_1_HW_Level_1{
     int Em = 1800;
     int Sm = 3000;
-    int ToM;
 //    +++++++++++++++++++++++++++++++++++++++++++++
     public n29_1_HW_Level_2() {
         this("未知名");
@@ -15,11 +14,17 @@ public class n29_1_HW_Level_2 extends n29_1_HW_Level_1{
    
 //    ===========================================
     
-    //得到總薪資
-    public int getToM(){
-        int ToM = super.getToM() + Em + Sm;
-        return ToM;
+    //得到基本總薪資
+    public int getToBM(){
+        int ToBM = super.getToBM() + Em + Sm;
+        return ToBM;
     }
+    
+    //得到總薪資含加班
+        public int getToM(int h){
+            int ToM = getToBM() + (int)(this.Money/240*1.5*h);
+            return ToM;
+        }
     
 //    ===========================================
 
