@@ -19,23 +19,23 @@ public class n26_1A2B_4 {
         */
         
         
+        
         //建立答案
         int[] Ans = creatAns();
         //顯示答案
         showAns(Ans);
-        System.out.println("");
         
         //設計輸入到判斷確認完成迴圈
-        boolean checkGuestNum = false;
         int[] GuestNum;
+        boolean checkGuestNum = false;
         int A,B;
         do {
             do {
             //輸入數字並判斷是否是4位數
             GuestNum = input();
             
-            //判斷輸入的數字是否符合型態
-            checkGuestNum = GuestNum(GuestNum);
+            //判斷輸入的數字是否沒有重複
+            checkGuestNum = checkRpGuestNum(GuestNum);
             
             } while (checkGuestNum != true);
         
@@ -78,6 +78,7 @@ public class n26_1A2B_4 {
     static void showAns(int[] Ans){
         for (int a : Ans) {
             System.out.print(a);
+            System.out.println("");
         }
     }
     
@@ -105,20 +106,20 @@ public class n26_1A2B_4 {
         return GuestNum;
     }
     
-    //判斷輸入數字是否符合型態
-    static boolean GuestNum(int[] GuestNum){
+    //判斷輸入的數字是否沒有重複
+    static boolean checkRpGuestNum(int[] GuestNum){
         
         boolean checkGuestNum = true;
-        int rp = 0;
+        int Rp = 0;
         for (int i=0; i<3; i++){
             for (int j=i+1; j<=3; j++){
                 if (GuestNum[i] == GuestNum[j]){
-                    rp++;
+                    Rp++;
                     checkGuestNum = false;
                 }
             }
         }
-        if (rp > 0){System.out.println("你輸入的數字有重複");}
+        if (Rp > 0){System.out.println("你輸入的數字有重複");}
         return checkGuestNum;
     }
     
