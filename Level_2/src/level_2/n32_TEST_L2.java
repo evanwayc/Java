@@ -8,7 +8,7 @@ public class n32_TEST_L2 extends n32_TEST_L1{
     void print(){
         System.out.println("L2-Print");
         System.out.println("L2-print\t" + i);
-        super.i = 3;
+        //super.i = 55;
         super.print();
     }
 }
