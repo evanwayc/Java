@@ -9,7 +9,7 @@ package level_1;
  *
  * @author Evan
  */
-public class n01_Type_Test {
+public class n01_Type {
     public static void main(String[] args){
         
         int a = 1;
