@@ -3,6 +3,12 @@ package level_2;
 
 public class n32_TEST_L1 {
     int i=1;
+
+    public n32_TEST_L1() {
+        print();
+    
+    }
+    
     
 
     void print(){
