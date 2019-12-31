@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 
 
 //寫給按鈕1使用 (外部)
-class MyAction implements ActionListener {
+class OuterClass_MyAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("YES Clicked");
-        //jButton1.setText("111"); //不能呼叫到其他class內的東西
+        //jButton1.setText("111"); //外部的class 不能呼叫到其他class內的東西
     }
 }
 
@@ -22,10 +22,12 @@ public class n33_MyForm extends javax.swing.JFrame {
      */
     public n33_MyForm() {
         initComponents();
+        
+        
             //定義按鈕1,透過自己建立的 "外"部 class
-        //jButton1.addActionListener( new Intermediate.MyAction());
+        jButton1.addActionListener( new OuterClass_MyAction());
             //定義按鈕2,透過自己建立的 "內"部 class
-        jButton2.addActionListener( new MyAction());
+        jButton2.addActionListener( new InnerClass_MyAction());
             //定義按鈕3,透過自己建立的 暫時 class
         jButton3.addActionListener( new ActionListener() {
             @Override
@@ -34,13 +36,12 @@ public class n33_MyForm extends javax.swing.JFrame {
             }
         } );
     }
-    
-    
-    //寫給按鈕2使用 (內部)
-    class MyAction implements ActionListener {
+        
+    //寫給按鈕2使用 (內部的class)(巢狀類別 Nested Classes)
+    class InnerClass_MyAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("YES Clicked");
-            jButton2.setText("222");
+            jButton2.setText("222");  //內部的class可以使用內部的東西
         }
     }
 
