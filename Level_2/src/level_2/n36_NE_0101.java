@@ -1,3 +1,4 @@
+
 //package level_2;
 
 interface Side{String getSide();}
@@ -19,10 +20,10 @@ class Coin{
         Coin aCoin = new Coin();
         Side firstAttempt = new Head();
         Tail seconAttempt = new Tail();
-        aCoin.override(firstAttempt);  //Q1
-        //aCoin.override((Object)Attempt);  //Q2
-        aCoin.override(seconAttempt);   //Q3
-        aCoin.override((Side)seconAttempt); //Q4
+        aCoin.override(firstAttempt);
+        //aCoin.override((Object)Attempt);
+        aCoin.override(seconAttempt);
+        aCoin.override((Side)seconAttempt);
     }
 }
 
