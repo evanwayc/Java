@@ -3,6 +3,7 @@ package level_2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 
 
@@ -25,9 +26,11 @@ public class n33_MyForm extends javax.swing.JFrame {
         
         
             //定義按鈕1,透過自己建立的 "外"部 class
-        jButton1.addActionListener( new OuterClass_MyAction());
+        //jButton1.addActionListener( new OuterClass_MyAction());
+        
             //定義按鈕2,透過自己建立的 "內"部 class
         jButton2.addActionListener( new InnerClass_MyAction());
+        
             //定義按鈕3,透過自己建立的 暫時 class
         jButton3.addActionListener( new ActionListener() {
             @Override
@@ -77,6 +80,11 @@ public class n33_MyForm extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
         jButton2.setText("jButton2");
@@ -115,6 +123,21 @@ public class n33_MyForm extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jButton4.setText("444");
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String number = JOptionPane.showInputDialog("請輸入數字");
+        int max = Integer.valueOf(number);
+        StringBuffer printStr = new StringBuffer();
+        for (int i = 1; i<=max; i++){
+            if (i%10 == 0){
+                printStr.append(i);
+                printStr.append("\n");
+            } else {
+                printStr.append(i);
+            }
+        }
+        jTextArea1.setText(printStr.toString());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

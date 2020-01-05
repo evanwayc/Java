@@ -21,7 +21,7 @@ class Coin{
         Side firstAttempt = new Head();
         Tail seconAttempt = new Tail();
         aCoin.override(firstAttempt);
-        aCoin.override((Object)Attempt);
+        //aCoin.override((Object)Attempt);
         aCoin.override(seconAttempt);
         aCoin.override((Side)seconAttempt);
     }
