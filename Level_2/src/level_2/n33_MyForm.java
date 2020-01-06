@@ -23,23 +23,23 @@ public class n33_MyForm extends javax.swing.JFrame {
     public n33_MyForm() {
         initComponents();
 
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseExited(MouseEvent e) {
-                System.out.println("mouse exit");
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                System.out.println("mouse enter");
-            }
-
-        });
+//        this.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//                System.out.println("mouse exit");
+//            }
+//            
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//                System.out.println("mouse enter");
+//            }
+//            
+//        });
 
         //定義按鈕1,透過自己建立的 "外"部 class
         //jButton1.addActionListener( new OuterClass_MyAction());
         //定義按鈕2,透過自己建立的 "內"部 class
-        jButton2.addActionListener(new InnerClass_MyAction());
+        //jButton2.addActionListener(new InnerClass_MyAction());
 
         //定義按鈕3,透過自己建立的 暫時 class
         jButton3.addActionListener(new ActionListener() {
@@ -80,7 +80,7 @@ public class n33_MyForm extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -102,6 +102,11 @@ public class n33_MyForm extends javax.swing.JFrame {
         jPanel1.add(jButton1);
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
 
         jButton3.setText("jButton3");
@@ -158,8 +163,18 @@ public class n33_MyForm extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         int result = JOptionPane.showConfirmDialog(null, "是否關閉", "關閉", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-        
+        if (result == JOptionPane.YES_OPTION) {
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+        };
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jTextArea1.setText("1234567890\nabcdefghitklmnopqrstuvwxyz\nQWERTYUIOP");
+        String sel = JOptionPane.showInputDialog("輸入要搜尋的文字");
+        jTextArea1.setSelectionStart(14);
+        jTextArea1.setSelectionEnd(17);
+        jTextArea1.requestFocus();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
