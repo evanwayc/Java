@@ -35,12 +35,10 @@ public class n33_MyForm extends javax.swing.JFrame {
 //            }
 //            
 //        });
-
         //定義按鈕1,透過自己建立的 "外"部 class
         //jButton1.addActionListener( new OuterClass_MyAction());
         //定義按鈕2,透過自己建立的 "內"部 class
         //jButton2.addActionListener(new InnerClass_MyAction());
-
         //定義按鈕3,透過自己建立的 暫時 class
         jButton3.addActionListener(new ActionListener() {
             @Override
@@ -170,9 +168,11 @@ public class n33_MyForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jTextArea1.setText("1234567890\nabcdefghitklmnopqrstuvwxyz\nQWERTYUIOP");
+        String str = jTextArea1.getText();
         String sel = JOptionPane.showInputDialog("輸入要搜尋的文字");
-        jTextArea1.setSelectionStart(14);
-        jTextArea1.setSelectionEnd(17);
+        System.out.println("字串" + sel + "最後1次出現的位置在：" + str.indexOf(sel));
+        jTextArea1.setSelectionStart(str.indexOf(sel));
+        jTextArea1.setSelectionEnd(str.indexOf(sel)+sel.length());
         jTextArea1.requestFocus();
     }//GEN-LAST:event_jButton2ActionPerformed
 
