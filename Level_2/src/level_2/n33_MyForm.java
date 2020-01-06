@@ -157,8 +157,8 @@ public class n33_MyForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        int result = JOptionPane.showConfirmDialog(null, "你確定要關閉嗎?");
-
+        int result = JOptionPane.showConfirmDialog(null, "是否關閉", "關閉", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+        
     }//GEN-LAST:event_formWindowClosing
 
     /**
