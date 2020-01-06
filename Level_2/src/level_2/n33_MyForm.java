@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 
 //寫給按鈕1使用 (外部)
@@ -82,6 +81,11 @@ public class n33_MyForm extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -135,18 +139,27 @@ public class n33_MyForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String number = JOptionPane.showInputDialog("請輸入數字");
-        int max = Integer.valueOf(number);
-        StringBuffer printStr = new StringBuffer();
-        for (int i = 1; i <= max; i++) {
-            if (i % 10 == 0) {
-                printStr.append(i);
-                printStr.append("\n");
-            } else {
-                printStr.append(i);
+        System.out.println(number);
+        //判斷是否為 null or ""
+        if (number != null && !number.equals("")) {
+            int max = Integer.valueOf(number);
+            StringBuffer printStr = new StringBuffer();
+            for (int i = 1; i <= max; i++) {
+                if (i % 10 == 0) {
+                    printStr.append(i);
+                    printStr.append("\n");
+                } else {
+                    printStr.append(i);
+                }
             }
+            jTextArea1.setText(printStr.toString());
         }
-        jTextArea1.setText(printStr.toString());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int result = JOptionPane.showConfirmDialog(null, "你確定要關閉嗎?");
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
