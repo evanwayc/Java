@@ -1,20 +1,20 @@
-
 package level_2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
-
-
 
 //寫給按鈕1使用 (外部)
 class OuterClass_MyAction implements ActionListener {
+
     public void actionPerformed(ActionEvent e) {
         System.out.println("YES Clicked");
         //jButton1.setText("111"); //外部的class 不能呼叫到其他class內的東西
     }
 }
-
 
 public class n33_MyForm extends javax.swing.JFrame {
 
@@ -23,33 +23,43 @@ public class n33_MyForm extends javax.swing.JFrame {
      */
     public n33_MyForm() {
         initComponents();
-        
-        
-            //定義按鈕1,透過自己建立的 "外"部 class
+
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                System.out.println("mouse exit");
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("mouse enter");
+            }
+
+        });
+
+        //定義按鈕1,透過自己建立的 "外"部 class
         //jButton1.addActionListener( new OuterClass_MyAction());
-        
-            //定義按鈕2,透過自己建立的 "內"部 class
-        jButton2.addActionListener( new InnerClass_MyAction());
-        
-            //定義按鈕3,透過自己建立的 暫時 class
-        jButton3.addActionListener( new ActionListener() {
+        //定義按鈕2,透過自己建立的 "內"部 class
+        jButton2.addActionListener(new InnerClass_MyAction());
+
+        //定義按鈕3,透過自己建立的 暫時 class
+        jButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jButton3.setText("333");
             }
-        } );
+        });
     }
-        
+
     //寫給按鈕2使用 (內部的class)(巢狀類別 Nested Classes)
     class InnerClass_MyAction implements ActionListener {
+
         public void actionPerformed(ActionEvent e) {
             System.out.println("YES Clicked");
             jButton2.setText("222");  //內部的class可以使用內部的東西
         }
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,7 +128,6 @@ public class n33_MyForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     //按鈕4 要執行的動作
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jButton4.setText("444");
@@ -128,8 +137,8 @@ public class n33_MyForm extends javax.swing.JFrame {
         String number = JOptionPane.showInputDialog("請輸入數字");
         int max = Integer.valueOf(number);
         StringBuffer printStr = new StringBuffer();
-        for (int i = 1; i<=max; i++){
-            if (i%10 == 0){
+        for (int i = 1; i <= max; i++) {
+            if (i % 10 == 0) {
                 printStr.append(i);
                 printStr.append("\n");
             } else {
