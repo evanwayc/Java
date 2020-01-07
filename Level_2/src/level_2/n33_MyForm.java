@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 //寫給按鈕1使用 (外部)
@@ -122,7 +123,12 @@ public class n33_MyForm extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("新增檔案");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -167,14 +173,35 @@ public class n33_MyForm extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTextArea1.setText("1234567890\nabcdefghitklmnopqrstuvwxyz\nQWERTYUIOP");
-        String str = jTextArea1.getText();
-        String sel = JOptionPane.showInputDialog("輸入要搜尋的文字");
-        System.out.println("字串" + sel + "最後1次出現的位置在：" + str.indexOf(sel));
-        jTextArea1.setSelectionStart(str.indexOf(sel));
-        jTextArea1.setSelectionEnd(str.indexOf(sel)+sel.length());
-        jTextArea1.requestFocus();
+        String TA = jTextArea1.getText();
+        String input = JOptionPane.showInputDialog("輸入要搜尋的文字");
+        if (input != null && !input.equals("")) {
+            System.out.println("字串" + input + "的位置在：" + TA.indexOf(input));
+            jTextArea1.setSelectionStart(TA.indexOf(input));
+            jTextArea1.setSelectionEnd(TA.indexOf(input) + input.length());
+            jTextArea1.requestFocus();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (!(jTextArea1.getText()).equals(null) && !(jTextArea1.getText()).equals("")) {
+            int newFileOption = JOptionPane.showConfirmDialog(null, "是否存檔", "存檔", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            switch (newFileOption) {
+                case 0:
+                    System.out.println("0");
+                    JFileChooser save = new JFileChooser();
+                    save.showSaveDialog(null);
+                    break;
+                case 1:
+                    System.out.println("1");
+                    jTextArea1.setText("");
+                    break;
+                case 2:
+                    System.out.println("2");
+                    break;
+            }
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
