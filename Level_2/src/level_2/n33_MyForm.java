@@ -88,6 +88,7 @@ public class n33_MyForm extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setText("123456789\n123456789\n123456789\nqwertyuiop\nqwertyuiop\nqwertyuiop\nQERTYUIOP\nQERTYUIOP\nQERTYUIOP");
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -176,7 +177,7 @@ public class n33_MyForm extends javax.swing.JFrame {
         String TA = jTextArea1.getText();
         String input = JOptionPane.showInputDialog("輸入要搜尋的文字");
         if (input != null && !input.equals("")) {
-            System.out.println("字串" + input + "的位置在：" + TA.indexOf(input));
+            System.out.println("字串" + input + "的位置在：" + TA.indexOf(input, 8));
             jTextArea1.setSelectionStart(TA.indexOf(input));
             jTextArea1.setSelectionEnd(TA.indexOf(input) + input.length());
             jTextArea1.requestFocus();

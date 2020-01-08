@@ -69,6 +69,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="123456789&#xa;123456789&#xa;123456789&#xa;qwertyuiop&#xa;qwertyuiop&#xa;qwertyuiop&#xa;QERTYUIOP&#xa;QERTYUIOP&#xa;QERTYUIOP"/>
           </Properties>
         </Component>
       </SubComponents>
