@@ -60,11 +60,15 @@ public class F_1A2B {
     }
 
     static String showResult(String GuestStr, int[] Ans) {
-        int[] GuestInt = {GuestStr.charAt(0), GuestStr.charAt(1), GuestStr.charAt(2), GuestStr.charAt(3)};
-
+        int n1 = Character.getNumericValue(GuestStr.charAt(0));
+        int n2 = Character.getNumericValue(GuestStr.charAt(1));
+        int n3 = Character.getNumericValue(GuestStr.charAt(2));
+        int n4 = Character.getNumericValue(GuestStr.charAt(3));
+        int[] GuestInt = {n1,n2,n3,n4};
+        
         //檢查是否有收到陣列Ans
-        for (int a : Ans) {
-            System.out.print(a);
+        for (int a : GuestInt) {
+            System.out.println(a);
         }
 
         int A = 0;
