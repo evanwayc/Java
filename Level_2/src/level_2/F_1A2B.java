@@ -64,12 +64,7 @@ public class F_1A2B {
         int n2 = Character.getNumericValue(GuestStr.charAt(1));
         int n3 = Character.getNumericValue(GuestStr.charAt(2));
         int n4 = Character.getNumericValue(GuestStr.charAt(3));
-        int[] GuestInt = {n1,n2,n3,n4};
-        
-        //檢查是否有收到陣列Ans
-        for (int a : GuestInt) {
-            System.out.println(a);
-        }
+        int[] GuestInt = {n1, n2, n3, n4};
 
         int A = 0;
         for (int i = 0; i <= 3; i++) {
