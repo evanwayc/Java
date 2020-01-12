@@ -173,13 +173,15 @@ public class n33_MyForm extends javax.swing.JFrame {
         };
     }//GEN-LAST:event_formWindowClosing
 
+    int SP = 0;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String TA = jTextArea1.getText();
         String input = JOptionPane.showInputDialog("輸入要搜尋的文字");
         if (input != null && !input.equals("")) {
-            System.out.println("字串" + input + "的位置在：" + TA.indexOf(input, 8));
-            jTextArea1.setSelectionStart(TA.indexOf(input));
-            jTextArea1.setSelectionEnd(TA.indexOf(input) + input.length());
+            SP = TA.indexOf(input,SP);
+            jTextArea1.setSelectionStart(SP);
+            jTextArea1.setSelectionEnd(SP + input.length());
+            SP++;
             jTextArea1.requestFocus();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
