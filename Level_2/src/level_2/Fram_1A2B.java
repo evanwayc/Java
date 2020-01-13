@@ -9,13 +9,21 @@ public class Fram_1A2B extends javax.swing.JFrame {
 
     //固定Ans在階層之上
     int[] Ans = F_1A2B.creatAns();
-
+    
+    //定義重新開始函式
+    public void newStar(){
+        Ans = F_1A2B.creatAns();
+        String AnsStr = Arrays.toString(Ans);
+        jTextField2.setText(""+Ans[0]+Ans[1]+Ans[2]+Ans[3]);
+        jTextArea1.setText(jTextArea1.getText() + "答案已更新為\t"+AnsStr+"\n");
+    }
+    
+    //建構子
     public Fram_1A2B() {
         initComponents();
 
         //取得答案並且顯示在螢幕上
-        String AnsStr = Arrays.toString(Ans);
-        jTextField2.setText(AnsStr);
+        newStar();
     }
 
     /**
@@ -33,8 +41,8 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,51 +64,52 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        label1.setText("請輸入四位數字：");
+        jLabel1.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
+        jLabel1.setText("請輸入四位數字：");
 
-        label2.setText("答案：");
+        jLabel2.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
+        jLabel2.setText("答案：");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
-                        .addGap(30, 30, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(0, 20, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -126,24 +135,32 @@ public class Fram_1A2B extends javax.swing.JFrame {
                 if (checkGuestNoRp == false) {
                     JOptionPane.showMessageDialog(null, "請勿輸入一樣的數字");
                 } else {
-                    //比對答案&顯示結果
+                    //比對答案&顯示時間+猜測數字+結果
                     //取得時間
-                    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+                    SimpleDateFormat sdFormat = new SimpleDateFormat("hh:mm:ss");
                     Date Date = new Date();
                     String DateStr = sdFormat.format(Date);
                     //取得AB結果
                     String Result = F_1A2B.showResult(GuestStr, Ans);
-                    jTextArea1.setText(jTextArea1.getText() + DateStr + "\t" + Result + "\n");
+                    jTextArea1.setText(jTextArea1.getText() + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
+                    if (Result.equals("4A0B")) {
+                        int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        switch (PassOption) {
+                            case JOptionPane.OK_OPTION:
+                                newStar();
+                                break;
+                            case JOptionPane.NO_OPTION:
+                                jTextArea1.setText(jTextArea1.getText() + "答案無更新\n");
+                                break;
+                        }
+                    }
                 }
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Ans = F_1A2B.creatAns();
-        String AnsStr = Arrays.toString(Ans);
-        jTextField2.setText(AnsStr);
-        jTextArea1.setText(jTextArea1.getText() + "答案已更新\n");
+        newStar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -185,11 +202,11 @@ public class Fram_1A2B extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
     // End of variables declaration//GEN-END:variables
 }
