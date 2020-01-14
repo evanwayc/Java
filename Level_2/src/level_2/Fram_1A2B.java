@@ -17,7 +17,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
 
         //取得答案並且顯示在螢幕上
         newStar();
-        jTextArea1.setText("時間\t猜過的數字\t結果\n");
+        jTextPane1.setText("時間\t猜過的數字\t結果\n");
     }
 
     //定義重新開始函式
@@ -25,7 +25,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         Ans = F_1A2B.creatAns();
         String AnsStr = Arrays.toString(Ans);
         jTextField2.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
-        jTextArea1.setText(jTextArea1.getText() + "答案已更新為\t" + AnsStr + "\n");
+        jTextPane1.setText(jTextPane1.getText() + "答案已更新為\t" + AnsStr + "\n");
     }
 
     //送出數字比對
@@ -55,7 +55,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
                     String DateStr = sdFormat.format(Date);
                     //取得AB結果
                     String Result = F_1A2B.showResult(GuestStr, Ans);
-                    jTextArea1.setText(jTextArea1.getText() + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
+                    jTextPane1.setText(jTextPane1.getText() + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
                     if (Result.equals("4A0B")) {
                         int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                         switch (PassOption) {
@@ -63,7 +63,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
                                 newStar();
                                 break;
                             case JOptionPane.NO_OPTION:
-                                jTextArea1.setText(jTextArea1.getText() + "答案無更新\n");
+                                jTextPane1.setText(jTextPane1.getText() + "答案無更新\n");
                                 break;
                         }
                     }
@@ -80,13 +80,14 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton1.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
         jButton1.setText("送出答案");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +101,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
         jButton2.setText("重新開始");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,27 +109,23 @@ public class Fram_1A2B extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         jLabel1.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
         jLabel1.setText("請輸入四位數字：");
 
         jLabel2.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
         jLabel2.setText("答案：");
 
+        jScrollPane2.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
@@ -138,9 +136,8 @@ public class Fram_1A2B extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addGap(0, 20, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jButton2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +153,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -218,9 +215,9 @@ public class Fram_1A2B extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
