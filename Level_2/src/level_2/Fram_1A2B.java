@@ -1,5 +1,6 @@
 package level_2;
 
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -9,23 +10,34 @@ import javax.swing.JOptionPane;
 public class Fram_1A2B extends javax.swing.JFrame {
 
     //固定Ans在階層之上
-    int[] Ans = F_1A2B.creatAns();
+    int[] Ans = F_1A2B.creatAns();  //答案
+    int NumberOfTime = 0;   //猜測次數
+    String FirstStr = "次數\t時間\t猜過的數字\t結果\n"; //初始化的文字
 
     //建構子
     public Fram_1A2B() {
         initComponents();
 
+        //設定Icon
+        setIcon();
+
         //取得答案並且顯示在螢幕上
         newStar();
-        jTextPane1.setText("時間\t猜過的數字\t結果\n");
+        jTextPane1.setText(FirstStr);
+    }
+
+    //設定Icon
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
     }
 
     //定義重新開始函式
     public void newStar() {
         Ans = F_1A2B.creatAns();
+        NumberOfTime = 0;
         String AnsStr = Arrays.toString(Ans);
         jTextField2.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
-        jTextPane1.setText(jTextPane1.getText() + "\n答案已更新為      " + AnsStr + "\n時間\t猜過的數字\t結果\n");
+        jTextPane1.setText(jTextPane1.getText() + "-----------------------------------------------\n答案已更新為      " + AnsStr + "\n" + FirstStr);
     }
 
     //送出數字比對
@@ -48,6 +60,8 @@ public class Fram_1A2B extends javax.swing.JFrame {
                 if (checkGuestNoRp == false) {
                     JOptionPane.showMessageDialog(null, "請勿輸入一樣的數字");
                 } else {
+                    // 猜測次數+1
+                    NumberOfTime++;
                     //比對答案&顯示時間+猜測數字+結果
                     //取得時間
                     SimpleDateFormat sdFormat = new SimpleDateFormat("hh:mm:ss");
@@ -55,7 +69,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
                     String DateStr = sdFormat.format(Date);
                     //取得AB結果
                     String Result = F_1A2B.showResult(GuestStr, Ans);
-                    jTextPane1.setText(jTextPane1.getText() + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
+                    jTextPane1.setText(jTextPane1.getText() + NumberOfTime+ "\t" + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
                     if (Result.equals("4A0B")) {
                         int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                         switch (PassOption) {
@@ -223,4 +237,5 @@ public class Fram_1A2B extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
 }
