@@ -59,6 +59,8 @@ public class F_1A2B {
         return checkGuestNoRp;
     }
 
+    static int ShowA[] = new int[4];
+
     static String showResult(String GuestStr, int[] Ans) {
         int n1 = Character.getNumericValue(GuestStr.charAt(0));
         int n2 = Character.getNumericValue(GuestStr.charAt(1));
@@ -67,9 +69,11 @@ public class F_1A2B {
         int[] GuestInt = {n1, n2, n3, n4};
 
         int A = 0;
+
         for (int i = 0; i <= 3; i++) {
             if (GuestInt[i] == Ans[i]) {
                 A++;
+                ShowA[i]++;
             }
         }
 
@@ -83,7 +87,9 @@ public class F_1A2B {
         }
         B = B - A;
 
-        String Result = A + "A" + B + "B";
+        String StrShowA = "" + ShowA[0] + ShowA[1] + ShowA[2] + ShowA[3];
+
+        String Result = A + "A" + B + "B" + StrShowA;
         return Result;
     }
 }

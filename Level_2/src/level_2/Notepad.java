@@ -5,6 +5,9 @@
  */
 package level_2;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +21,10 @@ public class Notepad extends javax.swing.JFrame {
      */
     public Notepad() {
         initComponents();
+        //Toolkit.getDefaultToolkit().getScreenSize();
+        ImageIcon aa = new ImageIcon("icon.png");
+        this.setIconImage(aa.getImage());
+        jFrame1.setLocationRelativeTo(null);
     }
 
     /**
@@ -29,6 +36,8 @@ public class Notepad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -46,7 +55,27 @@ public class Notepad extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
+        jButton2.setText("jButton2");
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(jButton2)
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                .addContainerGap(147, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(124, 124, 124))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -107,11 +136,21 @@ public class Notepad extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setText("貼上");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("尋找");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -132,9 +171,11 @@ public class Notepad extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        System.out.println(jTextArea1.getText());
-        if (jTextArea1.getText() != null) {
-            if (!jTextArea1.equals("")) {
+        String s = "";
+        System.out.println(s == "") ;
+        System.out.println(jTextArea1.getText() == "");
+                                           // !(jTextArea1.getText() == "")
+        if (jTextArea1.getText() != null && !(jTextArea1.getText() == "") ) {
                 int NewOption = JOptionPane.showConfirmDialog(null, "是否存檔", "是否存檔", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                 switch (NewOption) {
                     case JOptionPane.YES_OPTION:
@@ -145,7 +186,7 @@ public class Notepad extends javax.swing.JFrame {
                     case JOptionPane.CANCEL_OPTION:
                         break;
                 }
-            }
+            
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -188,6 +229,18 @@ public class Notepad extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "YES");
+        jFrame1.show();
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "YES");
+        jFrame1.show();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +277,8 @@ public class Notepad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
