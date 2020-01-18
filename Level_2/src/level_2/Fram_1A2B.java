@@ -84,7 +84,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         String AnsStr = Arrays.toString(Ans);
         jTextField2.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
         ShowA();
-        jLabel3.setText("" + SAns[0] + SAns[1] + SAns[2] + SAns[3]);
+        jLabel3.setText("****");
         jTextPane1.setText(jTextPane1.getText() + "------------------------------------\n答案已更新為      " + AnsStr + "\n" + FirstStr);
     }
 
