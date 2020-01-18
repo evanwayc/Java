@@ -12,19 +12,25 @@ import javax.swing.JOptionPane;
 public class Fram_1A2B extends javax.swing.JFrame {
 
     //設定環境變數
-    //固定Ans在階層之上的參數
-    int[] Ans = F_1A2B.creatAns();  //答案
+    //建立並取得答案
+    int[] Ans = F_1A2B.creatAns();
+    //建立觀看答案Label的陣列
     String SAns[] = {String.valueOf(Ans[0]), String.valueOf(Ans[1]), String.valueOf(Ans[2]), String.valueOf(Ans[3])};
+    //建立A位置是否被猜到的判斷變數
     int A1, A2, A3, A4 = 0;
-    int NumberOfTime = 0;   //猜測次數
-    String FirstStr = "次數\t時間\t猜過的數字\t結果\n"; //初始化的文字
+    //建立猜測次數
+    int NumberOfTime = 0;
+    //結果欄位初始化的文字
+    String FirstStr = "次數\t時間\t猜過的數字\t結果\n";
+    //建立第一次猜測的時間變數
     Date FirstDate = new Date();
+    //建立全部猜對時的時間變數
+    Date FinalDate = new Date();
 
     //建構子
     public Fram_1A2B() {
         initComponents();
 
-        //設定初始變數
         //設定視窗至中
         Dimension SDimensionWH = Toolkit.getDefaultToolkit().getScreenSize();
         Double SDW = SDimensionWH.getWidth();
@@ -37,11 +43,14 @@ public class Fram_1A2B extends javax.swing.JFrame {
         int PH = ((SIH / 2) - (FIW / 2));
         Point PP = new Point(PW, PH);
         setLocation(PP);
+        
         //設定Icon
         setIcon();
 
         //取得答案並且顯示在螢幕上
-        newStar();
+        newStart();
+        
+        //初始化結果視窗
         jTextPane1.setText(FirstStr);
     }
 
@@ -51,7 +60,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
     }
 
     public void SeeAns() {
-        jLabel3.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
+        jLabelAns.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
     }
 
     //設定顯示已猜對的答案數字
@@ -76,11 +85,11 @@ public class Fram_1A2B extends javax.swing.JFrame {
         } else {
             SAns[3] = "*";
         };
-        jLabel3.setText("" + SAns[0] + SAns[1] + SAns[2] + SAns[3]);
+        jLabelAns.setText("" + SAns[0] + SAns[1] + SAns[2] + SAns[3]);
     }
 
     //定義重新開始函式
-    public void newStar() {
+    public void newStart() {
         Ans = F_1A2B.creatAns();
         NumberOfTime = 0;
         String AnsStr = Arrays.toString(Ans);
@@ -88,7 +97,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         A2 = 0;
         A3 = 0;
         A4 = 0;
-        jLabel3.setText("****");
+        jLabelAns.setText("****");
         jTextPane1.setText(jTextPane1.getText() + "------------------------------------\n答案已更新為      " + AnsStr + "\n" + FirstStr);
     }
 
@@ -149,16 +158,16 @@ public class Fram_1A2B extends javax.swing.JFrame {
         //如果結果為"4A0B"
         if (Result.equals("4A0B")) {
             //取得全部猜對時的時間
-            Date FinalDate = Date;
+            FinalDate = Date;
             //計算第一次猜測到全部猜對的時間差
-            long CostTime = (FinalDate.getTime() - FirstDate.getTime());
-            System.out.println(CostTime);
+            long longCostTime = (FinalDate.getTime() - FirstDate.getTime());
+            System.out.println(longCostTime);
 
             //跳出選項視窗
-            int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "!!!可喜可賀!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             switch (PassOption) {
                 case JOptionPane.OK_OPTION:
-                    newStar();
+                    newStart();
                     break;
                 case JOptionPane.NO_OPTION:
                     jTextPane1.setText(jTextPane1.getText() + "答案無更新\n");
@@ -172,14 +181,14 @@ public class Fram_1A2B extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
+        jButtonSubmit = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonNewStart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelAns = new javax.swing.JLabel();
 
         jDesktopPane1.setLayout(null);
 
@@ -187,11 +196,11 @@ public class Fram_1A2B extends javax.swing.JFrame {
         setTitle("猜數字");
         setLocation(new java.awt.Point(0, 0));
 
-        jButton1.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
-        jButton1.setText("送出答案");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSubmit.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
+        jButtonSubmit.setText("送出答案");
+        jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSubmitActionPerformed(evt);
             }
         });
 
@@ -207,30 +216,30 @@ public class Fram_1A2B extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
-        jButton2.setText("重新開始");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNewStart.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
+        jButtonNewStart.setText("重新開始");
+        jButtonNewStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonNewStartActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
-        jLabel1.setText("請輸入四位數字：");
+        jLabel1.setText("輸入四位數字：");
 
         jLabel2.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
         jLabel2.setText("答案：");
 
         jScrollPane2.setViewportView(jTextPane1);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel3.setText("****");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelAns.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabelAns.setText("****");
+        jLabelAns.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel3MouseExited(evt);
+                jLabelAnsMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel3MouseEntered(evt);
+                jLabelAnsMouseEntered(evt);
             }
         });
 
@@ -251,11 +260,11 @@ public class Fram_1A2B extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jLabel3)))
+                                .addComponent(jLabelAns)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(jButtonSubmit)
+                            .addComponent(jButtonNewStart, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -264,31 +273,30 @@ public class Fram_1A2B extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonSubmit)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jButton2))
-                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelAns)
+                    .addComponent(jLabel2)
+                    .addComponent(jButtonNewStart))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     //按鈕1 - 送出數字比對
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
         Submit();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     //按鈕2 - 重新開始
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        newStar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonNewStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewStartActionPerformed
+        newStart();
+    }//GEN-LAST:event_jButtonNewStartActionPerformed
 
     //輸入框內按下Enter - 送出數字比對
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
@@ -298,13 +306,13 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jTextField1KeyReleased(evt);
     }//GEN-LAST:event_jTextField1KeyPressed
 
-    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+    private void jLabelAnsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAnsMouseEntered
         SeeAns();
-    }//GEN-LAST:event_jLabel3MouseEntered
+    }//GEN-LAST:event_jLabelAnsMouseEntered
 
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+    private void jLabelAnsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAnsMouseExited
         ShowA();
-    }//GEN-LAST:event_jLabel3MouseExited
+    }//GEN-LAST:event_jLabelAnsMouseExited
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         jTextField1KeyReleased(evt);
@@ -355,12 +363,12 @@ public class Fram_1A2B extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonNewStart;
+    private javax.swing.JButton jButtonSubmit;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelAns;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
