@@ -11,18 +11,21 @@ import javax.swing.JOptionPane;
 
 public class Fram_1A2B extends javax.swing.JFrame {
 
-    //設定初始位置
+    //設定環境變數
     //固定Ans在階層之上的參數
     int[] Ans = F_1A2B.creatAns();  //答案
     String SAns[] = {String.valueOf(Ans[0]), String.valueOf(Ans[1]), String.valueOf(Ans[2]), String.valueOf(Ans[3])};
     int A1, A2, A3, A4 = 0;
     int NumberOfTime = 0;   //猜測次數
     String FirstStr = "次數\t時間\t猜過的數字\t結果\n"; //初始化的文字
+    Date FirstDate = new Date();
 
     //建構子
     public Fram_1A2B() {
         initComponents();
 
+        //設定初始變數
+        //設定視窗至中
         Dimension SDimensionWH = Toolkit.getDefaultToolkit().getScreenSize();
         Double SDW = SDimensionWH.getWidth();
         Double SDH = SDimensionWH.getHeight();
@@ -40,7 +43,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
         //取得答案並且顯示在螢幕上
         newStar();
         jTextPane1.setText(FirstStr);
-
     }
 
     //設定Icon
@@ -82,7 +84,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
         Ans = F_1A2B.creatAns();
         NumberOfTime = 0;
         String AnsStr = Arrays.toString(Ans);
-        jTextField2.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
         A1 = 0;
         A2 = 0;
         A3 = 0;
@@ -95,7 +96,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
     public void Submit() {
         //取得輸入欄位上的文字
         String GuestStr = jTextField1.getText();
-
+        
         //檢查輸入的長度
         boolean checkGuestStrLength = F_1A2B.checkGuestStrLength(GuestStr);
         if (checkGuestStrLength == false) {
@@ -111,43 +112,57 @@ public class Fram_1A2B extends javax.swing.JFrame {
                 if (checkGuestNoRp == false) {
                     JOptionPane.showMessageDialog(null, "請勿輸入一樣的數字");
                 } else {
-                    // 猜測次數+1
-                    NumberOfTime++;
-                    //比對答案&顯示時間+猜測數字+結果
-                    //取得時間
-                    SimpleDateFormat sdFormat = new SimpleDateFormat("hh:mm:ss");
-                    Date Date = new Date();
-                    String DateStr = sdFormat.format(Date);
-                    Date FirstDate = new Date();
-                    if (NumberOfTime == 1) {
-                        FirstDate = Date;
-                    }
-                    //取得AB結果
-                    String ResultAB = F_1A2B.showResult(GuestStr, Ans);
-                    String Result = ResultAB.substring(0, 4);
-                    String StrShowA = ResultAB.substring(4, 8);
-                    A1 = Character.getNumericValue(StrShowA.charAt(0));
-                    A2 = Character.getNumericValue(StrShowA.charAt(1));
-                    A3 = Character.getNumericValue(StrShowA.charAt(2));
-                    A4 = Character.getNumericValue(StrShowA.charAt(3));
-                    jTextPane1.setText(jTextPane1.getText() + NumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
-                    ShowA();
-                    if (Result.equals("4A0B")) {
-                        Date FinalDate = Date;
-                        long CostTime = (FinalDate.getTime() - FirstDate.getTime());
-                        System.out.println(CostTime);
-
-                        int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                        switch (PassOption) {
-                            case JOptionPane.OK_OPTION:
-                                newStar();
-                                break;
-                            case JOptionPane.NO_OPTION:
-                                jTextPane1.setText(jTextPane1.getText() + "答案無更新\n");
-                                break;
-                        }
-                    }
+                    //執行比對
+                    Compare(GuestStr);
                 }
+            }
+        }
+    }
+
+    void Compare(String GuestStr) {
+        //猜測次數+1
+        NumberOfTime++;
+        //取得時間
+        SimpleDateFormat sdFormat = new SimpleDateFormat("hh:mm:ss");
+        Date Date = new Date();
+        String DateStr = sdFormat.format(Date);
+        //取得第一次猜測的時間
+        if (NumberOfTime == 1) {
+            FirstDate = Date;
+        }
+        //取得比對後的結果 "xAxBxxxx"
+        String ResultAB = F_1A2B.showResult(GuestStr, Ans);
+        //取得前四個字的 "xAxB" 結果
+        String Result = ResultAB.substring(0, 4);
+        //取得後四個字的 "xxxx" 結果
+        String StrShowA = ResultAB.substring(4, 8);
+        //轉換後四位數所代表的數字位置意義
+        A1 = Character.getNumericValue(StrShowA.charAt(0));
+        A2 = Character.getNumericValue(StrShowA.charAt(1));
+        A3 = Character.getNumericValue(StrShowA.charAt(2));
+        A4 = Character.getNumericValue(StrShowA.charAt(3));
+        //顯示已被猜中的A的數字
+        ShowA();
+        //輸出結果
+        jTextPane1.setText(jTextPane1.getText() + NumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
+        
+        //如果結果為"4A0B"
+        if (Result.equals("4A0B")) {
+            //取得全部猜對時的時間
+            Date FinalDate = Date;
+            //計算第一次猜測到全部猜對的時間差
+            long CostTime = (FinalDate.getTime() - FirstDate.getTime());
+            System.out.println(CostTime);
+
+            //跳出選項視窗
+            int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            switch (PassOption) {
+                case JOptionPane.OK_OPTION:
+                    newStar();
+                    break;
+                case JOptionPane.NO_OPTION:
+                    jTextPane1.setText(jTextPane1.getText() + "答案無更新\n");
+                    break;
             }
         }
     }
@@ -159,7 +174,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -235,7 +249,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel3)))
@@ -254,15 +267,14 @@ public class Fram_1A2B extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jButton2))
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,8 +294,8 @@ public class Fram_1A2B extends javax.swing.JFrame {
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Submit();
-            jTextField1KeyReleased(evt);
         }
+        jTextField1KeyReleased(evt);
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
@@ -319,13 +331,17 @@ public class Fram_1A2B extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fram_1A2B.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fram_1A2B.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fram_1A2B.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fram_1A2B.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fram_1A2B.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fram_1A2B.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fram_1A2B.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fram_1A2B.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -347,7 +363,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 

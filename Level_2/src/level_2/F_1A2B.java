@@ -17,11 +17,11 @@ public class F_1A2B {
     }
 
     //檢查輸入的長度
-    static boolean checkGuestStrLength(String GuestNumStr) {
-        if (GuestNumStr.length() != 4) {
-            return false;
-        } else {
+    static boolean checkGuestStrLength(String GuestStr) {
+        if (GuestStr.length() == 4) {
             return true;
+        } else {
+            return false;
         }
     }
 
