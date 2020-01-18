@@ -12,17 +12,6 @@ import javax.swing.JOptionPane;
 public class Fram_1A2B extends javax.swing.JFrame {
 
     //設定初始位置
-    Dimension SDimensionWH = Toolkit.getDefaultToolkit().getScreenSize();
-    Double SDW = SDimensionWH.getWidth();
-    Double SDH = SDimensionWH.getHeight();
-    int SIW = SDW.intValue();
-    int SIH = SDH.intValue();
-    int FIW = this.getWidth();
-    int FIH = this.getHeight();
-    int PW = ((SIW / 2) - (FIH / 2));
-    int PH = ((SIH / 2) - (FIW / 2));
-    Point PP = new Point(PW, PH);
-
     //固定Ans在階層之上的參數
     int[] Ans = F_1A2B.creatAns();  //答案
     String SAns[] = {String.valueOf(Ans[0]), String.valueOf(Ans[1]), String.valueOf(Ans[2]), String.valueOf(Ans[3])};
@@ -34,6 +23,17 @@ public class Fram_1A2B extends javax.swing.JFrame {
     public Fram_1A2B() {
         initComponents();
 
+        Dimension SDimensionWH = Toolkit.getDefaultToolkit().getScreenSize();
+        Double SDW = SDimensionWH.getWidth();
+        Double SDH = SDimensionWH.getHeight();
+        int SIW = SDW.intValue();
+        int SIH = SDH.intValue();
+        int FIW = this.getWidth();
+        int FIH = this.getHeight();
+        int PW = ((SIW / 2) - (FIH / 2));
+        int PH = ((SIH / 2) - (FIW / 2));
+        Point PP = new Point(PW, PH);
+        setLocation(PP);
         //設定Icon
         setIcon();
 
@@ -83,7 +83,10 @@ public class Fram_1A2B extends javax.swing.JFrame {
         NumberOfTime = 0;
         String AnsStr = Arrays.toString(Ans);
         jTextField2.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
-        ShowA();
+        A1 = 0;
+        A2 = 0;
+        A3 = 0;
+        A4 = 0;
         jLabel3.setText("****");
         jTextPane1.setText(jTextPane1.getText() + "------------------------------------\n答案已更新為      " + AnsStr + "\n" + FirstStr);
     }
@@ -133,7 +136,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
                         Date FinalDate = Date;
                         long CostTime = (FinalDate.getTime() - FirstDate.getTime());
                         System.out.println(CostTime);
-                        
+
                         int PassOption = JOptionPane.showConfirmDialog(null, "恭喜答對，是否重新開始", "可喜可賀", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                         switch (PassOption) {
                             case JOptionPane.OK_OPTION:
@@ -168,7 +171,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("猜數字");
-        setLocation(PP);
+        setLocation(new java.awt.Point(0, 0));
 
         jButton1.setFont(new java.awt.Font("微軟正黑體", 0, 12)); // NOI18N
         jButton1.setText("送出答案");
