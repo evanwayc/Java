@@ -5,9 +5,12 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import static level_2.F_1A2B.showResult;
 
 public class Fram_1A2B extends javax.swing.JFrame {
 
@@ -27,43 +30,50 @@ public class Fram_1A2B extends javax.swing.JFrame {
     //建立全部猜對時的時間變數
     Date FinalDate = new Date();
 
-    //建構子
-    public Fram_1A2B() {
-        initComponents();
-
-        //設定視窗至中
+    //F計算視窗至中的位置
+    public Point pp(int FIH, int FIW) {
         Dimension SDimensionWH = Toolkit.getDefaultToolkit().getScreenSize();
         Double SDW = SDimensionWH.getWidth();
         Double SDH = SDimensionWH.getHeight();
         int SIW = SDW.intValue();
         int SIH = SDH.intValue();
-        int FIW = this.getWidth();
-        int FIH = this.getHeight();
         int PW = ((SIW / 2) - (FIH / 2));
         int PH = ((SIH / 2) - (FIW / 2));
         Point PP = new Point(PW, PH);
-        setLocation(PP);
-        
+        return PP;
+    }
+
+    //建構子
+    public Fram_1A2B() {
+        initComponents();
+
+        //設定視窗至中
+        int FIW = this.getWidth();
+        int FIH = this.getHeight();
+        Point pp = pp(FIH, FIW);
+        setLocation(pp);
+
         //設定Icon
         setIcon();
 
         //取得答案並且顯示在螢幕上
         newStart();
-        
+
         //初始化結果視窗
         jTextPane1.setText(FirstStr);
     }
 
-    //設定Icon
+    //F設定Icon
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
     }
 
+    //F設定顯示答案的
     public void SeeAns() {
         jLabelAns.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
     }
 
-    //設定顯示已猜對的答案數字
+    //F設定顯示已猜對的答案數字
     public void ShowA() {
         if (A1 > 0) {
             SAns[0] = String.valueOf(Ans[0]);
@@ -88,7 +98,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jLabelAns.setText("" + SAns[0] + SAns[1] + SAns[2] + SAns[3]);
     }
 
-    //定義重新開始函式
+    //F定義重新開始函式
     public void newStart() {
         Ans = F_1A2B.creatAns();
         NumberOfTime = 0;
@@ -101,11 +111,11 @@ public class Fram_1A2B extends javax.swing.JFrame {
         jTextPane1.setText(jTextPane1.getText() + "------------------------------------\n答案已更新為      " + AnsStr + "\n" + FirstStr);
     }
 
-    //送出數字比對
+    //F送出數字比對
     public void Submit() {
         //取得輸入欄位上的文字
         String GuestStr = jTextField1.getText();
-        
+
         //檢查輸入的長度
         boolean checkGuestStrLength = F_1A2B.checkGuestStrLength(GuestStr);
         if (checkGuestStrLength == false) {
@@ -128,6 +138,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         }
     }
 
+    //F送出數字去比對判斷
     void Compare(String GuestStr) {
         //猜測次數+1
         NumberOfTime++;
@@ -139,24 +150,32 @@ public class Fram_1A2B extends javax.swing.JFrame {
         if (NumberOfTime == 1) {
             FirstDate = Date;
         }
-        //取得比對後的結果 "xAxBxxxx"
-        String ResultAB = F_1A2B.showResult(GuestStr, Ans);
-        //取得前四個字的 "xAxB" 結果
-        String Result = ResultAB.substring(0, 4);
-        //取得後四個字的 "xxxx" 結果
-        String StrShowA = ResultAB.substring(4, 8);
+        
+        //取得結果 by List
+        List ResultAL = new ArrayList();
+        ResultAL = showResult(GuestStr, Ans);
+        String ResultABStr = (String) ResultAL.get(0);
+        String ShowAStr = (String) ResultAL.get(1);
+        
+//        //取得結果 by Str "xAxBxxxx"
+//        String ResultAB = F_1A2B.showResult(GuestStr, Ans);
+//        //取得前四個字的 "xAxB" 結果
+//        String Result = ResultAB.substring(0, 4);
+//        //取得後四個字的 "xxxx" 結果
+//        String StrShowA = ResultAB.substring(4, 8);
+
         //轉換後四位數所代表的數字位置意義
-        A1 = Character.getNumericValue(StrShowA.charAt(0));
-        A2 = Character.getNumericValue(StrShowA.charAt(1));
-        A3 = Character.getNumericValue(StrShowA.charAt(2));
-        A4 = Character.getNumericValue(StrShowA.charAt(3));
+        A1 = Character.getNumericValue(ShowAStr.charAt(0));
+        A2 = Character.getNumericValue(ShowAStr.charAt(1));
+        A3 = Character.getNumericValue(ShowAStr.charAt(2));
+        A4 = Character.getNumericValue(ShowAStr.charAt(3));
         //顯示已被猜中的A的數字
         ShowA();
         //輸出結果
-        jTextPane1.setText(jTextPane1.getText() + NumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + Result + "\n");
-        
+        jTextPane1.setText(jTextPane1.getText() + NumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + ResultABStr + "\n");
+
         //如果結果為"4A0B"
-        if (Result.equals("4A0B")) {
+        if (ResultABStr.equals("4A0B")) {
             //取得全部猜對時的時間
             FinalDate = Date;
             //計算第一次猜測到全部猜對的時間差
