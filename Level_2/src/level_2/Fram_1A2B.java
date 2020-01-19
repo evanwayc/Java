@@ -22,7 +22,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
     //建立A位置是否被猜到的判斷變數
     int A1, A2, A3, A4 = 0;
     //建立猜測次數
-    int NumberOfTime = 0;
+    int GuestNumberOfTime = 0;
     //結果欄位初始化的文字
     String FirstStr = "次數\t時間\t猜過的數字\t結果\n";
     //建立第一次猜測的時間變數
@@ -31,7 +31,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
     Date FinalDate = new Date();
 
     //F計算視窗至中的位置
-    public Point pp(int FIH, int FIW) {
+    public Point GetPositionPoint(int FIH, int FIW) {
         Dimension SDimensionWH = Toolkit.getDefaultToolkit().getScreenSize();
         Double SDW = SDimensionWH.getWidth();
         Double SDH = SDimensionWH.getHeight();
@@ -50,8 +50,8 @@ public class Fram_1A2B extends javax.swing.JFrame {
         //設定視窗至中
         int FIW = this.getWidth();
         int FIH = this.getHeight();
-        Point pp = pp(FIH, FIW);
-        setLocation(pp);
+        Point PP = GetPositionPoint(FIH, FIW);
+        setLocation(PP);
 
         //設定Icon
         setIcon();
@@ -79,29 +79,29 @@ public class Fram_1A2B extends javax.swing.JFrame {
             SAns[0] = String.valueOf(Ans[0]);
         } else {
             SAns[0] = "*";
-        };
+        }
         if (A2 > 0) {
             SAns[1] = String.valueOf(Ans[1]);
         } else {
             SAns[1] = "*";
-        };
+        }
         if (A3 > 0) {
             SAns[2] = String.valueOf(Ans[2]);
         } else {
             SAns[2] = "*";
-        };
+        }
         if (A4 > 0) {
             SAns[3] = String.valueOf(Ans[3]);
         } else {
             SAns[3] = "*";
-        };
+        }
         jLabelAns.setText("" + SAns[0] + SAns[1] + SAns[2] + SAns[3]);
     }
 
     //F定義重新開始函式
     public void newStart() {
         Ans = F_1A2B.creatAns();
-        NumberOfTime = 0;
+        GuestNumberOfTime = 0;
         String AnsStr = Arrays.toString(Ans);
         A1 = 0;
         A2 = 0;
@@ -115,11 +115,13 @@ public class Fram_1A2B extends javax.swing.JFrame {
     public void Submit() {
         //取得輸入欄位上的文字
         String GuestStr = jTextField1.getText();
+        //清除輸入欄位內的文字
+        jTextField1.setText("");
 
         //檢查輸入的長度
         boolean checkGuestStrLength = F_1A2B.checkGuestStrLength(GuestStr);
         if (checkGuestStrLength == false) {
-            JOptionPane.showMessageDialog(null, "你輸入的長度不對");
+            JOptionPane.showMessageDialog(null, "輸入的長度不對");
         } else {
             //檢查輸入的是否全數字
             boolean checkGuestIsInt = F_1A2B.checkGuestIsInt(GuestStr);
@@ -141,29 +143,28 @@ public class Fram_1A2B extends javax.swing.JFrame {
     //F送出數字去比對判斷
     void Compare(String GuestStr) {
         //猜測次數+1
-        NumberOfTime++;
+        GuestNumberOfTime++;
         //取得時間
         SimpleDateFormat sdFormat = new SimpleDateFormat("hh:mm:ss");
         Date Date = new Date();
         String DateStr = sdFormat.format(Date);
         //取得第一次猜測的時間
-        if (NumberOfTime == 1) {
+        if (GuestNumberOfTime == 1) {
             FirstDate = Date;
         }
-        
+
         //取得結果 by List
         List ResultAL = new ArrayList();
         ResultAL = showResult(GuestStr, Ans);
         String ResultABStr = (String) ResultAL.get(0);
         String ShowAStr = (String) ResultAL.get(1);
-        
+
 //        //取得結果 by Str "xAxBxxxx"
 //        String ResultAB = F_1A2B.showResult(GuestStr, Ans);
 //        //取得前四個字的 "xAxB" 結果
 //        String Result = ResultAB.substring(0, 4);
 //        //取得後四個字的 "xxxx" 結果
 //        String StrShowA = ResultAB.substring(4, 8);
-
         //轉換後四位數所代表的數字位置意義
         A1 = Character.getNumericValue(ShowAStr.charAt(0));
         A2 = Character.getNumericValue(ShowAStr.charAt(1));
@@ -172,7 +173,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         //顯示已被猜中的A的數字
         ShowA();
         //輸出結果
-        jTextPane1.setText(jTextPane1.getText() + NumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + ResultABStr + "\n");
+        jTextPane1.setText(jTextPane1.getText() + GuestNumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + ResultABStr + "\n");
 
         //如果結果為"4A0B"
         if (ResultABStr.equals("4A0B")) {
@@ -340,7 +341,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         if (jTextField1.getText().length() == 4) {
             Submit();
-            jTextField1.setText("");
         }
     }//GEN-LAST:event_jTextField1KeyReleased
 

@@ -34,23 +34,12 @@ public class F_1A2B {
         int n2 = GuestStr.charAt(1);
         int n3 = GuestStr.charAt(2);
         int n4 = GuestStr.charAt(3);
-//        boolean b1, b2, b3, b4;
-//        b1 = Character.isDigit(n1);
-//        b2 = Character.isDigit(n2);
-//        b3 = Character.isDigit(n3);
-//        b4 = Character.isDigit(n4);
-        
-        if(Character.isDigit(n1) && Character.isDigit(n2) && Character.isDigit(n3) && Character.isDigit(n4)){
+
+        if (Character.isDigit(n1) && Character.isDigit(n2) && Character.isDigit(n3) && Character.isDigit(n4)) {
             return true;
-        } else{
+        } else {
             return false;
         }
-        
-//        if (b1 == true && b2 == true && b3 == true && b4 == true) {
-//            return true;
-//        } else {
-//            return false;
-//        }
     }
 
     //檢查輸入的是否有重複
@@ -72,7 +61,7 @@ public class F_1A2B {
     static List showResult(String GuestStr, int[] Ans) {
         //取得答案並轉為整數陣列
         int[] GuestInt = {Character.getNumericValue(GuestStr.charAt(0)), Character.getNumericValue(GuestStr.charAt(1)), Character.getNumericValue(GuestStr.charAt(2)), Character.getNumericValue(GuestStr.charAt(3))};
-        
+
         //判斷A
         int A = 0;
         for (int i = 0; i <= 3; i++) {
@@ -81,7 +70,7 @@ public class F_1A2B {
                 ShowA[i]++;
             }
         }
-        
+
         //判斷B
         int B = 0;
         for (int i = 0; i <= 3; i++) {
