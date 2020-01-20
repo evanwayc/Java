@@ -56,13 +56,14 @@ public class F_1A2B {
         return checkGuestNoRp;
     }
 
-    static int ShowA[] = new int[4];
+    
 
     static List showResult(String GuestStr, int[] Ans) {
         //取得答案並轉為整數陣列
         int[] GuestInt = {Character.getNumericValue(GuestStr.charAt(0)), Character.getNumericValue(GuestStr.charAt(1)), Character.getNumericValue(GuestStr.charAt(2)), Character.getNumericValue(GuestStr.charAt(3))};
 
         //判斷A
+        int ShowA[] = new int[4];
         int A = 0;
         for (int i = 0; i <= 3; i++) {
             if (GuestInt[i] == Ans[i]) {

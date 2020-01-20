@@ -30,9 +30,10 @@ public class Fram_1A2B extends javax.swing.JFrame {
     Date FirstDate = new Date();
     //建立全部猜對時的時間變數
     Date FinalDate = new Date();
-    //建立答對聲音
+    //建立聲音
+    AudioClip Wrong_Answer = new AudioClip(getClass().getResource("Wrong_Answer.wav").toExternalForm());
     AudioClip CrrectAnsAudio = new AudioClip(getClass().getResource("Crrect_Answer.wav").toExternalForm());
-
+    AudioClip All_Crrect_Answer = new AudioClip(getClass().getResource("All_Crrect_Answer.wav").toExternalForm());
 
     //F計算視窗至中的位置
     public Point GetPositionPoint(int FIH, int FIW) {
@@ -51,8 +52,6 @@ public class Fram_1A2B extends javax.swing.JFrame {
     public Fram_1A2B() {
         initComponents();
 
-        
-
         //設定視窗至中
         int FIW = this.getWidth();
         int FIH = this.getHeight();
@@ -66,7 +65,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         newStart();
 
         //初始化結果視窗
-        jTextPane1.setText(FirstStr); 
+        jTextPane1.setText(FirstStr);
     }
 
     //F設定Icon
@@ -184,10 +183,21 @@ public class Fram_1A2B extends javax.swing.JFrame {
         //輸出結果
         jTextPane1.setText(jTextPane1.getText() + GuestNumberOfTime + "\t" + DateStr + "\t" + GuestStr + "\t" + ResultABStr + "\n");
 
+        //如果結果為"0A0B"
+        if (ResultABStr.equals("0A0B")) {
+            Wrong_Answer.play();
+        }
+
+        //如果結果有A有B
+        if (Character.getNumericValue(ResultABStr.charAt(0)) > 0 || Character.getNumericValue(ResultABStr.charAt(2)) > 0) {
+            if (!ResultABStr.equals("4A0B")) {
+                CrrectAnsAudio.play();
+            }
+        }
         //如果結果為"4A0B"
         if (ResultABStr.equals("4A0B")) {
             //播放答對聲音
-            CrrectAnsAudio.play();
+            All_Crrect_Answer.play();
             //設定顯示答案為綠色
             jLabelAns.setForeground(java.awt.Color.green);
             //取得全部猜對時的時間
