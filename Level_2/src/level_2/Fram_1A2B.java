@@ -1,5 +1,6 @@
 package level_2;
 
+import javafx.scene.media.AudioClip;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -29,6 +30,9 @@ public class Fram_1A2B extends javax.swing.JFrame {
     Date FirstDate = new Date();
     //建立全部猜對時的時間變數
     Date FinalDate = new Date();
+    //建立答對聲音
+    AudioClip CrrectAnsAudio = new AudioClip(getClass().getResource("Crrect_Answer.wav").toExternalForm());
+
 
     //F計算視窗至中的位置
     public Point GetPositionPoint(int FIH, int FIW) {
@@ -47,6 +51,8 @@ public class Fram_1A2B extends javax.swing.JFrame {
     public Fram_1A2B() {
         initComponents();
 
+        
+
         //設定視窗至中
         int FIW = this.getWidth();
         int FIH = this.getHeight();
@@ -60,7 +66,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         newStart();
 
         //初始化結果視窗
-        jTextPane1.setText(FirstStr);
+        jTextPane1.setText(FirstStr); 
     }
 
     //F設定Icon
@@ -70,11 +76,13 @@ public class Fram_1A2B extends javax.swing.JFrame {
 
     //F設定顯示答案的
     public void SeeAns() {
+        jLabelAns.setForeground(java.awt.Color.red);
         jLabelAns.setText("" + Ans[0] + Ans[1] + Ans[2] + Ans[3]);
     }
 
     //F設定顯示已猜對的答案數字
     public void ShowA() {
+        jLabelAns.setForeground(java.awt.Color.black);
         if (A1 > 0) {
             SAns[0] = String.valueOf(Ans[0]);
         } else {
@@ -107,6 +115,7 @@ public class Fram_1A2B extends javax.swing.JFrame {
         A2 = 0;
         A3 = 0;
         A4 = 0;
+        jLabelAns.setForeground(java.awt.Color.black);
         jLabelAns.setText("****");
         jTextPane1.setText(jTextPane1.getText() + "------------------------------------\n答案已更新為      " + AnsStr + "\n" + FirstStr);
     }
@@ -177,6 +186,10 @@ public class Fram_1A2B extends javax.swing.JFrame {
 
         //如果結果為"4A0B"
         if (ResultABStr.equals("4A0B")) {
+            //播放答對聲音
+            CrrectAnsAudio.play();
+            //設定顯示答案為綠色
+            jLabelAns.setForeground(java.awt.Color.green);
             //取得全部猜對時的時間
             FinalDate = Date;
             //計算第一次猜測到全部猜對的時間差
