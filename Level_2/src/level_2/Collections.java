@@ -14,8 +14,8 @@ import java.util.TreeSet;
 public class Collections {
 
     public static void main(String[] args) {
-        ArrayList ay = new ArrayList();
 
+        ArrayList ay = new ArrayList();
         ay.add("Hello");
         ay.add("Hi");
         System.out.println("Size >>" + ay.size());
@@ -24,10 +24,19 @@ public class Collections {
         System.out.println(Stray0.length());
         System.out.println(ay.get(1));
 
-        ArrayList<String> ay2 = new ArrayList<String>();
+        System.out.println("================================");
+
+        ArrayList ay2 = new ArrayList();
         ay2.add("Hello2");
-        String ss = ay2.get(0);
+        String ss = (String) ay2.get(0);
         System.out.println(ss);
+        n28_1_Point p1 = new n28_1_Point();
+        n28_1_Point p2 = new n28_1_Point();
+        ay2.add(p1);
+        ay2.add(p2);
+        System.out.println((ay2.get(2)) == (ay2.get(1)));
+
+        System.out.println("================================");
 
         Set set = new TreeSet();
         set.add("setHELLO");
@@ -40,25 +49,29 @@ public class Collections {
             System.out.println(next);
         }
 
+        System.out.println("================================");
+
         printoutAll(set);
-        
-        
+
+        System.out.println("================================");
+
         Map map = new TreeMap();
         map.put("hello", "hello");
         map.put("hello2", "hello2");
         map.put("hello3", "hello3"); //key不變，Value內容改變
-        
+
         System.out.println(">>Size>>" + map.size());
         System.out.println(map);
         Object obj = map.get("hello2");//取出
-        String str = (String)obj;
+        String str = (String) obj;
         System.out.println(str);
+
         Set mapkeyset = map.keySet();
         Iterator itm = mapkeyset.iterator();
         while (itm.hasNext()) {
             Object key = itm.next();
             Object value = map.get(key);
-            System.out.println("key:"+key+"  "+ "value:"+value);
+            System.out.println("key:" + key + "  " + "value:" + value);
         }
 
     }
