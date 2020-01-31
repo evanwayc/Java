@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static level_2.F_1A2B.showResult;
 
@@ -70,7 +71,10 @@ public class Fram_1A2B extends javax.swing.JFrame {
 
     //F設定Icon
     private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+//        setIconImage(new ImageIcon("icon.png").getImage());
+//        Application.getApplication().setDockIconImage(
+//            new ImageIcon("icon.png").getImage());
     }
 
     //F設定顯示答案的
