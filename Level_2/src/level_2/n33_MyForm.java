@@ -2,14 +2,13 @@ package level_2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 //寫給按鈕1使用 (外部)
 class OuterClass_MyAction implements ActionListener {
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("YES Clicked");
         //jButton1.setText("111"); //外部的class 不能呼叫到其他class內的東西

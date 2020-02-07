@@ -32,9 +32,9 @@ public class Fram_1A2B extends javax.swing.JFrame {
     //建立全部猜對時的時間變數
     Date FinalDate = new Date();
     //建立聲音
-    AudioClip Wrong_Answer = new AudioClip(getClass().getResource("Wrong_Answer.wav").toExternalForm());
-    AudioClip CrrectAnsAudio = new AudioClip(getClass().getResource("Crrect_Answer.wav").toExternalForm());
-    AudioClip All_Crrect_Answer = new AudioClip(getClass().getResource("All_Crrect_Answer.wav").toExternalForm());
+    AudioClip Wrong_Answer = new AudioClip(getClass().getResource("Audio/Wrong_Answer.wav").toExternalForm());
+    AudioClip CrrectAnsAudio = new AudioClip(getClass().getResource("Audio/Crrect_Answer.wav").toExternalForm());
+    AudioClip All_Crrect_Answer = new AudioClip(getClass().getResource("Audio/All_Crrect_Answer.wav").toExternalForm());
 
     //F計算視窗至中的位置
     public Point GetPositionPoint(int FIH, int FIW) {

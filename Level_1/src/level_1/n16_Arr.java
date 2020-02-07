@@ -16,6 +16,7 @@ public class n16_Arr {
     public static void main(String[] args) {
         Integer arr[]={56,32,67,32,66,31,75,49,32,56};
          Arrays.sort(arr, Collections.reverseOrder());
+         //Arrays.sort(arr);
         //Arrays.reverse(arr);
         //Arrays.reverse(arr);
         //Reverse(arr);
