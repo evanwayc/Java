@@ -3,9 +3,9 @@ package level_3;
 public class Synchronize_Test {
 
     public static void main(String[] args) {
-        Account EvanAccount = new Account();
-        Preson p1 = new Preson(EvanAccount);
-        //Preson p2 = new Preson(EvanAccount);
+        Account EvanAccount = new Account(20);
+        withdraw p1 = new withdraw(EvanAccount);
+        withdraw p2 = new withdraw(EvanAccount);
         deposit d1 = new deposit(EvanAccount);
 
         //p1.withDraw(10);
@@ -13,28 +13,31 @@ public class Synchronize_Test {
         //d1.deposit(5);
         p1.start();
         d1.start();
+        p2.start();
     }
 }
 
 class Account {
 
-    public int Amount = 30;
+    public int Amount;
+
+    public Account(int i) {
+        this.Amount = i;
+    }
+
 }
 
 //===========================================
-class Preson extends Thread {
+class withdraw extends Thread {
 
     Account acct;
 
-    public Preson(Account a) {
+    public withdraw(Account a) {
         acct = a;
     }
 
     public void run() {
-        //while (acct.Amount > 0) {
         withDraw(10);
-        //}
-
     }
 
     public synchronized void withDraw(int i) {
