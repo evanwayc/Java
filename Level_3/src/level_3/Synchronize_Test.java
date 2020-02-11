@@ -47,19 +47,22 @@ class TDeposit extends Thread {
     public void DepositM(int DepositNum, int WithDrawNum) {
         while (true) {
             synchronized (acct) {
-                System.out.println(Thread.currentThread().getName() + "執行中");
+                System.out.println(Thread.currentThread().getName() + " 執行存款中");
                 if (acct.TAmount <= WithDrawNum) {
                     System.out.println("+++存款前 \t" + acct.TAmount);
                     acct.TAmount += DepositNum;
                     System.out.println("+++存款後 \t" + acct.TAmount);
                     System.out.println("===========================");
-                    if (acct.TAmount >= WithDrawNum) {
-                        System.out.println("\t\t\tDeposit do notify");
-                        acct.notify();
-                    }
+                    System.out.println("\t\t\tDeposit do notify");
+                    acct.notify();
+//                    if (acct.TAmount >= WithDrawNum) {
+//                        System.out.println("\t\t\tDeposit do notify");
+//                        acct.notify();
+//                    }
                 } else {
                     try {
                         System.out.println("\t\t\tDeposit do wait");
+                        System.out.println("===========================");
                         acct.wait();
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
@@ -91,19 +94,22 @@ class TWithDraw extends Thread {
     public void WithDrawM(int DepositNum, int WithDrawNum) {
         while (true) {
             synchronized (acct) {
-                System.out.println(Thread.currentThread().getName() + "執行中");
+                System.out.println(Thread.currentThread().getName() + " 執行扣款中");
                 if (acct.TAmount >= WithDrawNum) {
                     System.out.println("---扣款前 \t" + acct.TAmount);
                     acct.TAmount -= WithDrawNum;
                     System.out.println("---扣款後 \t" + acct.TAmount);
                     System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                    if (acct.TAmount < WithDrawNum) {
-                        System.out.println("\t\t\tWithDrawNum do notify");
-                        acct.notify();
-                    }
+                    System.out.println("\t\t\tWithDrawNum do notify");
+                    acct.notify();
+//                    if (acct.TAmount < WithDrawNum) {
+//                        System.out.println("\t\t\tWithDrawNum do notify");
+//                        acct.notify();
+//                    }
                 } else {
                     try {
                         System.out.println("\t\t\tWithDrawNum do wait");
+                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                         acct.wait();
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
