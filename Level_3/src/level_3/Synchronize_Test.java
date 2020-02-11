@@ -3,56 +3,63 @@ package level_3;
 public class Synchronize_Test {
 
     public static void main(String[] args) {
-        Account EvanAccount = new Account(20);
-        withdraw p1 = new withdraw(EvanAccount);
-        withdraw p2 = new withdraw(EvanAccount);
-        deposit d1 = new deposit(EvanAccount);
+        TAccount EvanAccount = new TAccount(100);
 
-        //p1.withDraw(10);
-        //p2.withDraw(20);
-        //d1.deposit(5);
-        p1.start();
-        d1.start();
-        p2.start();
+        int DepositNum = 100;
+        int WithDrawNum = 50;
+
+        TDeposit TD1 = new TDeposit(EvanAccount, DepositNum, WithDrawNum);
+        TWithDraw TW1 = new TWithDraw(EvanAccount, DepositNum, WithDrawNum);
+        TWithDraw TW2 = new TWithDraw(EvanAccount, DepositNum, WithDrawNum);
+        TD1.start();
+        TW1.start();
+        TW2.start();
+
     }
 }
 
-class Account {
+class TAccount {
 
-    public int Amount;
+    int TAmount;
 
-    public Account(int i) {
-        this.Amount = i;
+    public TAccount(int i) {
+        TAmount = i;
     }
-
 }
 
-//===========================================
-class withdraw extends Thread {
+class TDeposit extends Thread {
 
-    Account acct;
+    int DepositNum;
+    int WithDrawNum;
+    TAccount acct;
 
-    public withdraw(Account a) {
-        acct = a;
+    public TDeposit(TAccount acct, int DepositNum, int WithDrawNum) {
+        this.DepositNum = DepositNum;
+        this.WithDrawNum = WithDrawNum;
+        this.acct = acct;
     }
 
+    @Override
     public void run() {
-        withDraw(10);
+        DepositM(DepositNum, WithDrawNum);
     }
 
-    public synchronized void withDraw(int i) {
+    public void DepositM(int DepositNum, int WithDrawNum) {
         while (true) {
             synchronized (acct) {
-                System.out.println(Thread.currentThread().getName());
-
-                if (acct.Amount >= i) {
-                    System.out.println("W-Befor Amount = " + acct.Amount);
-                    acct.Amount -= i;
-                    System.out.println("W-After Amount = " + acct.Amount);
-                    System.out.println("==================");
-                    acct.notify();
+                System.out.println(Thread.currentThread().getName() + "執行中");
+                if (acct.TAmount <= WithDrawNum) {
+                    System.out.println("+++存款前 \t" + acct.TAmount);
+                    acct.TAmount += DepositNum;
+                    System.out.println("+++存款後 \t" + acct.TAmount);
+                    System.out.println("===========================");
+                    if (acct.TAmount >= WithDrawNum) {
+                        System.out.println("\t\t\tDeposit do notify");
+                        acct.notify();
+                    }
                 } else {
                     try {
+                        System.out.println("\t\t\tDeposit do wait");
                         acct.wait();
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
@@ -63,32 +70,40 @@ class withdraw extends Thread {
     }
 }
 
-//=================================================================
-class deposit extends Thread {
+//=======================================================================
+class TWithDraw extends Thread {
 
-    Account acct;
+    int DepositNum;
+    int WithDrawNum;
+    TAccount acct;
 
-    public deposit(Account a) {
-        acct = a;
+    public TWithDraw(TAccount acct, int DepositNum, int WithDrawNum) {
+        this.DepositNum = DepositNum;
+        this.WithDrawNum = WithDrawNum;
+        this.acct = acct;
     }
 
+    @Override
     public void run() {
-        deposit(100);
+        WithDrawM(DepositNum, WithDrawNum);
     }
 
-    public synchronized void deposit(int i) {
+    public void WithDrawM(int DepositNum, int WithDrawNum) {
         while (true) {
             synchronized (acct) {
-                System.out.println(Thread.currentThread().getName());
-
-                if (acct.Amount < 20) {
-                    System.out.println("D-Befor Amount = " + acct.Amount);
-                    acct.Amount += i;
-                    System.out.println("D-After Amount = " + acct.Amount);
-                    System.out.println("==================");
-                    acct.notify();
+                System.out.println(Thread.currentThread().getName() + "執行中");
+                if (acct.TAmount >= WithDrawNum) {
+                    System.out.println("---扣款前 \t" + acct.TAmount);
+                    acct.TAmount -= WithDrawNum;
+                    System.out.println("---扣款後 \t" + acct.TAmount);
+                    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                    if (acct.TAmount < WithDrawNum) {
+                        System.out.println("\t\t\tWithDrawNum do notify");
+                        acct.notify();
+                    }
                 } else {
                     try {
+                        System.out.println("\t\t\tWithDrawNum do wait");
                         acct.wait();
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
