@@ -1,0 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package level_3;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author evan
+ */
+public class postgresDB_TEST {
+
+    public static void main(String[] args) {
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres","evan","Mxb159753");
+            System.out.println("Connected to the PostgreSQL server successfully.");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM information_schema.sql_parts");
+            while (rs.next()) {
+                System.out.println(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(postgresDB_TEST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+}
