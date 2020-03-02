@@ -1,4 +1,3 @@
-
 package addusers;
 
 import java.awt.*;
@@ -7,8 +6,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 import java.lang.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatePopup extends JDialog implements java.awt.event.ActionListener {
+
     private JPanel mPanel1 = new JPanel();
     private JPanel mPanel2 = new JPanel();
     private JPanel mPanel3 = new JPanel();
@@ -43,12 +47,27 @@ public class DatePopup extends JDialog implements java.awt.event.ActionListener 
         mPanel1.setLayout(new BorderLayout());
         mPanel1.setBorder(new TitledBorder(BorderFactory.createLineBorder(
                 Color.white, 1), "日期選擇"));
-
-        Calendar nowCalendar = Calendar.getInstance();
-        this.mTheDate = nowCalendar.get(Calendar.DAY_OF_WEEK);
-        this.mDay = nowCalendar.get(Calendar.DAY_OF_MONTH);
-        this.mMonth = nowCalendar.get(Calendar.MONTH);
-        this.mYear = nowCalendar.get(Calendar.YEAR);
+        
+        if (mText.getText().equals("點擊選擇生日")) {
+            Calendar nowCalendar = Calendar.getInstance();
+            this.mTheDate = nowCalendar.get(Calendar.DAY_OF_WEEK);
+            this.mDay = nowCalendar.get(Calendar.DAY_OF_MONTH);
+            this.mMonth = nowCalendar.get(Calendar.MONTH);
+            this.mYear = nowCalendar.get(Calendar.YEAR);
+        } else {
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                Date getDate = format.parse(mText.getText());
+                Calendar getCalendar = Calendar.getInstance();
+                getCalendar.setTime(getDate);
+                this.mTheDate = getCalendar.get(Calendar.DAY_OF_WEEK);
+                this.mDay = getCalendar.get(Calendar.DAY_OF_MONTH);
+                this.mMonth = getCalendar.get(Calendar.MONTH);
+                this.mYear = getCalendar.get(Calendar.YEAR);
+            } catch (ParseException ex) {
+                Logger.getLogger(DatePopup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         // 設置mPanel2
         JComboBox comboMonth = new JComboBox();
@@ -218,13 +237,13 @@ public class DatePopup extends JDialog implements java.awt.event.ActionListener 
         mPanel1.add(mPanel3, BorderLayout.CENTER);
         this.validate();
     }
-    
+
     /**
      * 顯示日期視窗
      */
-    public void showDialog(){
+    public void showDialog() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((int)(screenSize.getWidth()-getWidth())/2,(int)(screenSize.getHeight()-getHeight())/2);
+        setLocation((int) (screenSize.getWidth() - getWidth()) / 2, (int) (screenSize.getHeight() - getHeight()) / 2);
         setVisible(true);
     }
-} 
+}
