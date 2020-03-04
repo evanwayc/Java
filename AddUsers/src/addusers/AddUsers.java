@@ -42,18 +42,14 @@ public class AddUsers extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane6 = new javax.swing.JTextPane();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jButton_Add = new javax.swing.JButton();
+        jComboBox_Gender = new javax.swing.JComboBox<>();
+        jTextField_Birthday = new javax.swing.JTextField();
+        jTextField_Phone = new javax.swing.JTextField();
+        jTextField_EName = new javax.swing.JTextField();
+        jTextField_CName = new javax.swing.JTextField();
+        jTextField_Type = new javax.swing.JTextField();
+        jTextField_Age = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,43 +65,35 @@ public class AddUsers extends javax.swing.JFrame {
 
         jLabel6.setText("Type：");
 
-        jButton1.setText("新增");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Add.setText("新增");
+        jButton_Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_AddActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jScrollPane2.setViewportView(jTextPane2);
-
-        jScrollPane4.setViewportView(jTextPane4);
-
-        jScrollPane6.setViewportView(jTextPane6);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "男", "女", "其他" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_Gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "男", "女", "其他" }));
+        jComboBox_Gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jComboBox_GenderActionPerformed(evt);
             }
         });
 
-        jTextField1.setText("點擊選擇生日");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextField_Birthday.setText("點擊選擇生日");
+        jTextField_Birthday.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+                jTextField_BirthdayMouseClicked(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_Birthday.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextField_BirthdayActionPerformed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_Phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextField_PhoneActionPerformed(evt);
             }
         });
 
@@ -116,6 +104,7 @@ public class AddUsers extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_Add)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
@@ -124,67 +113,84 @@ public class AddUsers extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_Gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_EName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_CName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_EName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jTextField_CName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_Gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField_Birthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(14, 14, 14))
+                    .addComponent(jTextField_Type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jButton_Add)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AddActionPerformed
         // TODO add your handling code here:
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost/java", "dbuser", "");
-            System.out.println("postgresql conn OK!");
+            conn = DriverManager.getConnection("jdbc:mariadb://211.23.25.5:3307/appx", "appx", "Java@@2020");
+            System.out.println("SQL conn OK!\n");
             Statement st = conn.createStatement();
-            st.executeUpdate("INSERT INTO public.users\n"
-                    + "(name, cname, gender, age, phone, creatdate, \"type\")\n"
-                    + "VALUES('" + jTextPane1.getText() + "', '" + jTextPane2.getText() + "', '" + jComboBox1.getSelectedItem() + "', " + Integer.parseInt(jTextPane4.getText()) + ", '" + jTextField2.getText() + "', now(), " + Integer.parseInt(jTextPane6.getText()) + ");");
-            System.out.println("新增");
+
+            System.out.println("INSERT INTO appx.users\n"
+                    + "(cname, ename, gender, age, phone, `type`, create_time)\n"
+                    + "VALUES("
+                    + "'" + jTextField_CName.getText() + "'" + ", "
+                    + "'" + jTextField_EName.getText() + "'" + ", "
+                    + "'" + jComboBox_Gender.getSelectedItem() + "'" + ", "
+                    + "'" + Integer.parseInt(jTextField_Age.getText()) + "'" + ", "
+                    + "'" + jTextField_Phone.getText() + "'" + ", "
+                    + "'" + Integer.parseInt(jTextField_Type.getText()) + "'"
+                    + ", current_timestamp());");
+
+            st.executeUpdate("INSERT INTO appx.users\n"
+                    + "(cname, ename, gender, age, phone, `type`, create_time)\n"
+                    + "VALUES("
+                    + "'" + jTextField_CName.getText() + "'" + ", "
+                    + "'" + jTextField_EName.getText() + "'" + ", "
+                    + "'" + jComboBox_Gender.getSelectedItem() + "'" + ", "
+                    + "'" + Integer.parseInt(jTextField_Age.getText()) + "'" + ", "
+                    + "'" + jTextField_Phone.getText() + "'" + ", "
+                    + "'" + Integer.parseInt(jTextField_Type.getText()) + "'"
+                    + ", current_timestamp());");
+
+            System.out.println("\n新增");
         } catch (SQLException ex) {
             Logger.getLogger(AddUsers.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -194,36 +200,36 @@ public class AddUsers extends javax.swing.JFrame {
                 Logger.getLogger(AddUsers.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_AddActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jComboBox_GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_GenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jComboBox_GenderActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextField_BirthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BirthdayActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextField_BirthdayActionPerformed
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+    private void jTextField_BirthdayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_BirthdayMouseClicked
 
         try {
-            DatePopup DP = new DatePopup(jTextField1);
+            DatePopup DP = new DatePopup(jTextField_Birthday);
             DP.showDialog();
-            System.out.println(jTextField1.getText());
+            System.out.println(jTextField_Birthday.getText());
             SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-            Date bithday = format.parse(jTextField1.getText());
+            Date bithday = format.parse(jTextField_Birthday.getText());
             age = getAgeByBirth(bithday);
-            jTextPane4.setText(Integer.toString(age));
+            jTextField_Age.setText(Integer.toString(age));
         } catch (ParseException ex) {
             Logger.getLogger(AddUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jTextField1MouseClicked
+    }//GEN-LAST:event_jTextField_BirthdayMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextField_PhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_PhoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextField_PhoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,23 +267,19 @@ public class AddUsers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton_Add;
+    private javax.swing.JComboBox<String> jComboBox_Gender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane4;
-    private javax.swing.JTextPane jTextPane6;
+    private javax.swing.JTextField jTextField_Age;
+    private javax.swing.JTextField jTextField_Birthday;
+    private javax.swing.JTextField jTextField_CName;
+    private javax.swing.JTextField jTextField_EName;
+    private javax.swing.JTextField jTextField_Phone;
+    private javax.swing.JTextField jTextField_Type;
     // End of variables declaration//GEN-END:variables
 }
