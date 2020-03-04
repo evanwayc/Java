@@ -3,8 +3,6 @@ package level_3;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import sun.security.x509.CertificateVersion;
 
 public class Calendar_Test {
 
