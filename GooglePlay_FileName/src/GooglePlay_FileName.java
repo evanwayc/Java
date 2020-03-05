@@ -64,6 +64,11 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
         jLabelLanguage = new javax.swing.JLabel();
         jLabelID = new javax.swing.JLabel();
         jButtonClean = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Google Play - File Name");
@@ -91,10 +96,13 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
         jTextArea1.setText("AVJET_(片名)_cmn-TW_PosterArt_(ContentID)\n\nAVJET_(片名)_cmn-TW_Forced_(ContentID)\n\nAVJET_(片名)_cmn-TW_Full_(ContentID)\n\nAVJET_(片名)_(發音)_Fully_Feature_(ContentID)\n\nAVJET_(片名)_(發音)_Sub_Trailer_(ContentID)");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabelName.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
         jLabelName.setText("片名：");
 
+        jLabelLanguage.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
         jLabelLanguage.setText("發音：");
 
+        jLabelID.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
         jLabelID.setText("ID：");
 
         jButtonClean.setText("清除");
@@ -104,6 +112,21 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
+        jLabel1.setText("海報：");
+
+        jLabel2.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
+        jLabel2.setText("字卡：");
+
+        jLabel3.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
+        jLabel3.setText("字幕：");
+
+        jLabel4.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
+        jLabel4.setText("正片：");
+
+        jLabel5.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
+        jLabel5.setText("預告：");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,28 +134,31 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(46, 46, 46)
+                        .addComponent(jButtonClean))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelLanguage)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextFieldLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonClean)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelID)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabelName)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 209, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabelLanguage)
+                                .addComponent(jLabelID))
+                            .addComponent(jLabelName, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,9 +177,23 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
                     .addComponent(jLabelID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonClean)
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -229,6 +269,11 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClean;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelID;
     private javax.swing.JLabel jLabelLanguage;
     private javax.swing.JLabel jLabelName;

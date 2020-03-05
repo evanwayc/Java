@@ -100,7 +100,7 @@ class TWithDraw extends Thread {
                     acct.TAmount -= WithDrawNum;
                     System.out.println("---扣款後 \t" + acct.TAmount);
                     System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                    System.out.println("\t\t\tWithDrawNum do notify");
+                    System.out.println("\t\t\tWithDraw do notify");
                     acct.notify();
 //                    if (acct.TAmount < WithDrawNum) {
 //                        System.out.println("\t\t\tWithDrawNum do notify");
@@ -108,7 +108,7 @@ class TWithDraw extends Thread {
 //                    }
                 } else {
                     try {
-                        System.out.println("\t\t\tWithDrawNum do wait");
+                        System.out.println("\t\t\tWithDraw do wait");
                         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                         acct.wait();
                     } catch (InterruptedException ex) {
