@@ -1,4 +1,0 @@
-Account
-Depositer
-MyFirstJava
-Person
