@@ -1,7 +1,7 @@
 
-package level_1;
 
-public class Level_1 {
+
+public class do_while {
 
     public static void main(String[] args) {
         int a = 0;

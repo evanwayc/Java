@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package level_3;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author evan
  */
-public class postgresDB_TEST {
+public class postgresDB {
 
     public static void main(String[] args) {
 
@@ -46,13 +46,13 @@ public class postgresDB_TEST {
                 System.out.println(rs.getString(2));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(postgresDB_TEST.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(postgresDB.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             try {
                 conn.close();
                 System.out.println("Close");
             } catch (SQLException ex) {
-                Logger.getLogger(postgresDB_TEST.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(postgresDB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
