@@ -2,11 +2,12 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /*
@@ -14,7 +15,6 @@ import javax.swing.JLabel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Evan
@@ -23,21 +23,27 @@ public class showimage extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
+     * @throws java.net.MalformedURLException
      */
-    public showimage() {
+    public showimage() throws MalformedURLException, IOException {
         initComponents();
-        
+
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("/p3.gif"));
+            img = ImageIO.read(new URL("https://f.ecimg.tw/img/ecshop/v1/layout/index/1/20200303105254_b21-2-360x1000.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(showimage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ImageIcon icon=new ImageIcon(img);
+        ImageIcon icon = new ImageIcon(img);
         JLabel lb = new JLabel();
         lb.setIcon(icon);
-        
-        //jLabel1.setIcon(icon);                
+        jLabel1.setIcon(icon);
+
+//        URL url = new URL("https://f.ecimg.tw/img/ecshop/v1/layout/index/1/20200303105254_b21-2-360x1000.jpg");
+//        BufferedImage c = ImageIO.read(url);
+//        ImageIcon image = new ImageIcon(c);
+//        jLabel1.setIcon(image);
+
     }
 
     /**
@@ -58,16 +64,16 @@ public class showimage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addGap(150, 150, 150)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
         );
 
         pack();
@@ -106,7 +112,11 @@ public class showimage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new showimage().setVisible(true);
+                try {
+                    new showimage().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(showimage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
