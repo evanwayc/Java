@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class ClientSend {
+public class Client_FileSend_CLI {
 
     public static void main(String[] args) {
         /**

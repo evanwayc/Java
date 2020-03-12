@@ -49,7 +49,15 @@ public class Clinet_Msg {
         } catch (IOException ex) {
             Logger.getLogger(Clinet_Msg.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 //==================================================================================
+        //關閉通道
+        try {
+            BR.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Clinet_Msg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PW.close();
         //回傳 伺服器給的文字 給視窗
         return FinalMsg;
     }

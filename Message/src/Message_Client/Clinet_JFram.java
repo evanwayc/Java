@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -19,6 +20,12 @@ public class Clinet_JFram extends javax.swing.JFrame {
     /**
      * Creates new form Clinet
      */
+    
+    //定義檔案位置字串
+    String FileAbsolutePath = null;
+    
+    
+    
     public Clinet_JFram() {
         initComponents();
         
@@ -63,6 +70,11 @@ public class Clinet_JFram extends javax.swing.JFrame {
         });
 
         SendFileB.setText("檔案");
+        SendFileB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendFileBActionPerformed(evt);
+            }
+        });
 
         Show.setColumns(20);
         Show.setRows(5);
@@ -105,6 +117,18 @@ public class Clinet_JFram extends javax.swing.JFrame {
         // TODO add your handling code here:
         SendMsg();
     }//GEN-LAST:event_SendMsgBActionPerformed
+
+    private void SendFileBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFileBActionPerformed
+        // TODO add your handling code here:
+        JFileChooser JFC = new JFileChooser();
+        JFC.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int returnValue = JFC.showOpenDialog(null);//叫出filechooser 
+        if (returnValue == JFileChooser.APPROVE_OPTION) //判斷是否選擇檔案 
+        {
+            FileAbsolutePath = JFC.getSelectedFile().getAbsolutePath();
+            System.out.println(FileAbsolutePath);
+        }
+    }//GEN-LAST:event_SendFileBActionPerformed
 
     /**
      * @param args the command line arguments

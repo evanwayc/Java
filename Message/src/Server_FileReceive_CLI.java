@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerReceive {
+public class Server_FileReceive_CLI {
 
     public static void main(String[] args) {
         /**
