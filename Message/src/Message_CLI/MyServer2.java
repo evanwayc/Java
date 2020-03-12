@@ -1,4 +1,4 @@
-package message;
+package Message_CLI;
 
 import java.io.BufferedReader;
 import java.io.File;

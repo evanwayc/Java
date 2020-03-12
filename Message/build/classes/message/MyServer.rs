@@ -1,2 +1,0 @@
-message.MyServer
-message.MyThread

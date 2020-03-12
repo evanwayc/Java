@@ -1,4 +1,4 @@
-package message;
+package Message_CLI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class MyClinet {
 
     public static void main(String[] args) {
         try (
-                Socket s = new Socket("localhost", 80); //localhost=127.0.0.1
+                Socket s = new Socket("localhost", 888); //localhost=127.0.0.1
                 BufferedReader brin = new BufferedReader(new InputStreamReader(s.getInputStream()));
                 PrintWriter pwout = new PrintWriter(s.getOutputStream());) {
             while (true) {

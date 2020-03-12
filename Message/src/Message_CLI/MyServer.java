@@ -1,4 +1,4 @@
-package message;
+package Message_CLI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +22,7 @@ class MyThread extends Thread {
         try {
             brin = new BufferedReader(new InputStreamReader(s.getInputStream())); //取得Clinet端文字
             PrintWriter pwout = new PrintWriter(s.getOutputStream());
-            System.out.println(" 80 incoming...");
+            System.out.println(" 888 incoming...");
             while (true) {
                 String data = brin.readLine();
                 System.out.println(">> " + data);
@@ -53,7 +53,7 @@ public class MyServer {
 
     public static void main(String[] args) {
         try (
-                ServerSocket ss = new ServerSocket(80);) {
+                ServerSocket ss = new ServerSocket(888);) {
             while (true) {
                 Socket s = ss.accept(); //等待client連線中
                 new MyThread(s).start();
