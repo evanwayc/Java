@@ -19,10 +19,14 @@ public class MyClinet {
             while (true) {
                 String uis = JOptionPane.showInputDialog(null, "請輸入文字", "請輸入", 1);
                 if (uis.equalsIgnoreCase("exit")) {
-                    pwout.print(uis);
+                    pwout.println("1");
+                    pwout.flush();
+                    pwout.println(uis);
                     pwout.flush();
                     break;
                 }
+                pwout.println("1");
+                pwout.flush();
                 pwout.println(uis);
                 pwout.flush(); //一定要 flush 不然會卡住
 

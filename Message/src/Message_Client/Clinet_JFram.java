@@ -5,6 +5,7 @@
  */
 package Message_Client;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -23,25 +24,33 @@ public class Clinet_JFram extends javax.swing.JFrame {
     
     //定義檔案位置字串
     String FileAbsolutePath = null;
-    
+    Socket SM = null;
+    Socket SF = null;
     
     
     public Clinet_JFram() {
         initComponents();
-        
+        try {
+            SM = new Socket("localhost", 888);
+            DataOutputStream DOSM = new DataOutputStream(SM.getOutputStream());
+            DOSM.writeUTF("1");
+            Show.setText(Show.getText() + "\n" + "SM 與Server連線中...");
+        } catch (IOException ex) {
+            Logger.getLogger(Clinet_JFram.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            SF = new Socket("localhost", 888);
+            DataOutputStream DOSF = new DataOutputStream(SF.getOutputStream());
+            DOSF.writeUTF("2");
+            Show.setText(Show.getText() + "\n" + "SF 與Server連線中...");
+        } catch (IOException ex) {
+            Logger.getLogger(Clinet_JFram.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void SendMsg() {
-        Socket S = null;
-        try {
-            S = new Socket("localhost", 888);
-        } catch (IOException ex) {
-            Logger.getLogger(Clinet_JFram.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        }
-        Show.setText("與Server連線中...");
         String InputMsg = MsgTF.getText().trim();
-        String GetMsg = Clinet_Msg.ClinetSendMsg(S,InputMsg);
+        String GetMsg = Clinet_SendMsg_DS.ClinetSendMsg(SM,InputMsg);
         Show.setText(Show.getText() + "\n" + GetMsg);
     }
 
@@ -61,6 +70,7 @@ public class Clinet_JFram extends javax.swing.JFrame {
         Show = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Client");
 
         SendMsgB.setText("送出");
         SendMsgB.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +126,7 @@ public class Clinet_JFram extends javax.swing.JFrame {
     private void SendMsgBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMsgBActionPerformed
         // TODO add your handling code here:
         SendMsg();
+        MsgTF.setText("");
     }//GEN-LAST:event_SendMsgBActionPerformed
 
     private void SendFileBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFileBActionPerformed
