@@ -24,24 +24,24 @@ public class Clinet_JFram extends javax.swing.JFrame {
     
     //定義檔案位置字串
     String FileAbsolutePath = null;
-    Socket SM = null;
-    Socket SF = null;
+    Socket Socket_Msg = null;
+    Socket Socket_File = null;
     
     
     public Clinet_JFram() {
         initComponents();
         try {
-            SM = new Socket("localhost", 888);
-            DataOutputStream DOSM = new DataOutputStream(SM.getOutputStream());
-            DOSM.writeUTF("1");
+            Socket_Msg = new Socket("localhost", 888);
+//            DataOutputStream DOSM = new DataOutputStream(Socket_Msg.getOutputStream());
+//            DOSM.writeUTF("1");
             Show.setText(Show.getText() + "\n" + "SM 與Server連線中...");
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFram.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            SF = new Socket("localhost", 888);
-            DataOutputStream DOSF = new DataOutputStream(SF.getOutputStream());
-            DOSF.writeUTF("2");
+            Socket_File = new Socket("localhost", 999);
+//            DataOutputStream DOSF = new DataOutputStream(Socke_File.getOutputStream());
+//            DOSF.writeUTF("2");
             Show.setText(Show.getText() + "\n" + "SF 與Server連線中...");
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFram.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,7 +50,7 @@ public class Clinet_JFram extends javax.swing.JFrame {
     
     public void SendMsg() {
         String InputMsg = MsgTF.getText().trim();
-        String GetMsg = Clinet_SendMsg_DS.ClinetSendMsg(SM,InputMsg);
+        String GetMsg = Clinet_SendMsg_DS.ClinetSendMsg(Socket_Msg,InputMsg);
         Show.setText(Show.getText() + "\n" + GetMsg);
     }
 
@@ -131,6 +131,7 @@ public class Clinet_JFram extends javax.swing.JFrame {
 
     private void SendFileBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFileBActionPerformed
         // TODO add your handling code here:
+        String FileAbsolutePath = null;
         JFileChooser JFC = new JFileChooser();
         JFC.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int returnValue = JFC.showOpenDialog(null);//叫出filechooser 
@@ -139,6 +140,9 @@ public class Clinet_JFram extends javax.swing.JFrame {
             FileAbsolutePath = JFC.getSelectedFile().getAbsolutePath();
             System.out.println(FileAbsolutePath);
         }
+        
+        Client_SendFile_DS.ClinetSendFile(Socket_File, FileAbsolutePath);
+        
     }//GEN-LAST:event_SendFileBActionPerformed
 
     /**

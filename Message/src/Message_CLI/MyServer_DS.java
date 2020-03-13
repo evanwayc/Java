@@ -31,7 +31,6 @@ class ThreadMsg extends Thread {
             System.out.println(" 888 incoming...");
             while (true) {
                 String data = DI.readUTF();
-                System.out.println("data is " + data);
                 System.out.println(">> " + data);
                 if (data.equalsIgnoreCase("exit") || data == null) {
                     DO.writeUTF("bye");
@@ -40,7 +39,7 @@ class ThreadMsg extends Thread {
                 }
                 System.out.println(">> " + new StringBuffer(data).reverse().toString()); //利用StringBuffer反轉字串
                 DO.writeUTF(new StringBuffer(data).reverse().toString());  //丟回去Client端
-                DO.flush();                
+                DO.flush();
             }
         } catch (IOException ex) {
             Logger.getLogger(ThreadMsg.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,6 +128,8 @@ class ThreadFile extends Thread {
 
 }
 
+
+//===================================================================================================
 /**
  *
  * @author Evan
@@ -138,23 +139,19 @@ public class MyServer_DS {
     public static void main(String[] args) {
 
         try (
-                ServerSocket ss = new ServerSocket(888);) {
+                ServerSocket ServerSocket_Msg = new ServerSocket(888);
+                ServerSocket ServerSocket_File = new ServerSocket(999);) {
             while (true) {
-                Socket s = ss.accept(); //等待client連線中
+                Socket Socekt_Msg = ServerSocket_Msg.accept(); //等待client連線中
+                System.out.println("888ok");
+                Socket Socekt_File = ServerSocket_File.accept(); //等待client連線中
+                System.out.println("999ok");
 
-                DataInputStream DI = new DataInputStream(s.getInputStream());
+                new ThreadMsg(Socekt_Msg).start();
+                System.out.println("ThreadMsg_C");
+                new ThreadFile(Socekt_File).start();
+                System.out.println("ThreadFile_C");
 
-                int IDCode = Integer.valueOf(DI.readUTF());
-                switch (IDCode) {
-                    case 1:
-                        new ThreadMsg(s).start();
-                        System.out.println("ThreadMsg_C");
-                        break;
-                    case 2:
-                        new ThreadFile(s).start();
-                        System.out.println("ThreadFile_C");
-                        break;
-                }
             }//while
 
         } catch (IOException ex) {
