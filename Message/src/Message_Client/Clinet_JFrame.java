@@ -116,13 +116,13 @@ public class Clinet_JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_SendMsgBActionPerformed
 
     private void SendFileBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFileBActionPerformed
-//
-//        try {
-//            File_Socket = new Socket("localhost", 999);
-//            Show.setText(Show.getText() + "\n" + "File_Socket 888 與Server連線中...");
-//        } catch (IOException ex) {
-//            Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+        try {
+            File_Socket = new Socket("localhost", 999);
+            Show.setText(Show.getText() + "\n" + "File_Socket 888 與Server連線中...");
+        } catch (IOException ex) {
+            Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         String FileAbsolutePath = null;
 

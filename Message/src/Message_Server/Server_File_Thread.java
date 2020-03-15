@@ -106,8 +106,8 @@ class Server_File_Thread extends Thread {
             }
             count = size;
             System.out.println("伺服器端接收到資料包，大小為" + size);
-//
-//            // close 所有 Stream   (關閉會出錯);
+
+//            // close 所有 Stream   (！！！關閉會出錯！！！ 不知為何？？？);
 //            try {
 //                CtoS_getComm_DIS.close();
 //            } catch (IOException ex) {
