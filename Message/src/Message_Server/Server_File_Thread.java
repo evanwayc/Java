@@ -24,7 +24,7 @@ class Server_File_Thread extends Thread {
 
         DataInputStream CtoS_getComm_DIS = null;
         String Comm = null;
-        File file = null;
+        File get_File = null;
         byte[] buffer = new byte[4096 * 5];
         InputStream CtoS_getByte_IS = null;
         FileOutputStream StoF_sendByte_FOS = null;
@@ -49,6 +49,13 @@ class Server_File_Thread extends Thread {
         System.out.println(xieyi);
         if (!xieyi.equals("111")) {
             System.out.println("伺服器收到的協議碼不正確");
+            //先關閉通道
+            try {
+                CtoS_getComm_DIS.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return;
         }
 
@@ -59,10 +66,10 @@ class Server_File_Thread extends Thread {
         System.out.println("filename = " + filename);
         System.out.println("filesize = " + filesize);
 
-        file = new File(filename);
-        if (!file.exists()) {
+        get_File = new File(filename);
+        if (!get_File.exists()) {
             try {
-                file.createNewFile();
+                get_File.createNewFile();
             } catch (IOException e) {
                 System.out.println("伺服器端建立檔案失敗");
             }
@@ -79,7 +86,7 @@ class Server_File_Thread extends Thread {
         }
 
         try {
-            StoF_sendByte_FOS = new FileOutputStream(file);
+            StoF_sendByte_FOS = new FileOutputStream(get_File);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,30 +111,30 @@ class Server_File_Thread extends Thread {
             } catch (IOException ex) {
                 Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
             }
-            count = size;
-            System.out.println("伺服器端接收到資料包，大小為" + size);
 
-//            // close 所有 Stream   (！！！關閉會出錯！！！ 不知為何？？？);
-//            try {
-//                CtoS_getComm_DIS.close();
-//            } catch (IOException ex) {
-//                Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            try {
-//                CtoS_getByte_IS.close();
-//            } catch (IOException ex) {
-//                Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            try {
-//                StoF_sendByte_FOS.close();
-//            } catch (IOException ex) {
-//                Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            try {
-//                Socket.close();
-//            } catch (IOException ex) {
-//                Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            count = size;
+
+            System.out.println("伺服器端接收到資料包，大小為" + size);
+        }
+        
+        //完成傳輸後回傳有關檔案的結果
+        System.out.println("檔案" + filename + "已接收完成，size為 " + filesize);
+        
+        //關閉所有 Stream
+        try {
+            CtoS_getByte_IS.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            StoF_sendByte_FOS.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            Socket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Server_File_Thread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
