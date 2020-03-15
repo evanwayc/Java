@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/evan/NetBeansProjects/Java/Message/src/Message_Client/Client_SendFile_DS.java</file>
+            <file>file:/Users/evan/NetBeansProjects/Java/Message/src/Message_Server/Server_CLI.java</file>
             <file>file:/Users/evan/NetBeansProjects/Java/Message/src/Message_Server/Server_File_Thread.java</file>
+            <file>file:/Users/evan/NetBeansProjects/Java/Message/src/Message_Client/Clinet_JFrame.java</file>
         </group>
     </open-files>
 </project-private>

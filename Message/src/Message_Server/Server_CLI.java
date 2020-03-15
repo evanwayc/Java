@@ -35,7 +35,11 @@ public class Server_CLI {
 
         //為了不讓Server關閉，讓他一直跑無窮迴圈
         while (true) {
-
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Server_CLI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         //Server 無窮迴圈 監聽Clinet連進來的Socket  (但會停留在 Filess.accept();)===========================================

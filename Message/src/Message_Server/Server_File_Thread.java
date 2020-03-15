@@ -44,9 +44,7 @@ class Server_File_Thread extends Thread {
         }
 
         int index = Comm.indexOf("/#");
-        System.out.println(index);
         String xieyi = Comm.substring(0, index);
-        System.out.println(xieyi);
         if (!xieyi.equals("111")) {
             System.out.println("伺服器收到的協議碼不正確");
             //先關閉通道
@@ -92,9 +90,10 @@ class Server_File_Thread extends Thread {
         }
 
         int size = 0;
-        long count = 0;
-        while (count != -1) {
+        long count = -1;
+        while (count != 0) {
 
+            System.out.println("Count is " + count);
             try {
                 size = CtoS_getByte_IS.read(buffer);
             } catch (IOException ex) {
