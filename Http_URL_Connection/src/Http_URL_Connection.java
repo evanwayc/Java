@@ -95,7 +95,7 @@ public class Http_URL_Connection {
             byte[] buffer = new byte[1024 * 5];
             int size = 0;
             long count = 0;
-            while ((count = PtoA_IS.read(buffer)) != -1) {
+            while (count != -1) {
                 System.out.println("Count is " + count);
                 size = PtoA_IS.read();
                 AtoF_FOS.write(buffer, 0, size);
