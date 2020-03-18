@@ -60,7 +60,6 @@ public class Http_URL_Connection {
         //System.out.println(URL_Original_String.substring((PicURL_StartIndex + 10), (PicURL_EndIndex - 15)));
         PicURL = URL_Original_String.substring((PicURL_StartIndex + 10), (PicURL_EndIndex - 15));
 
-        
         //將取得的所有圖片網址放進 名稱為 TotalPicURL_AL 的 ArrayList 裡
         ArrayList TotalPicURL_AL = new ArrayList();
         int TotalPage_Num = Integer.valueOf(TotalPage);
@@ -79,12 +78,15 @@ public class Http_URL_Connection {
 
         //設定路徑為 路徑 + 該漫畫的標題名稱
         File Dir_of_File = new File(Path + Title);
-        Dir_of_File.mkdir();
+        if (!Dir_of_File.exists()) {
+            Dir_of_File.mkdir();
+        }
 
         //開始寫入每一張圖片到檔案中
         for (int i = 0; i < TotalPage_Num; i++) {
             String TempString = String.format("%04d", i) + ".jpg";
             File TempFile = new File(Dir_of_File.getAbsolutePath() + "\\" + TempString);
+            //印出來確認一下位置
             //System.out.println(Dir_of_File.getAbsolutePath() + "\\" + TempString);
             TempFile.createNewFile();
             URL Pic_URL = new URL((String) TotalPicURL_AL.get(i));
@@ -92,17 +94,17 @@ public class Http_URL_Connection {
             InputStream PtoA_IS = Pic_con.getInputStream();
             FileOutputStream AtoF_FOS = new FileOutputStream(TempFile);
 
-            byte[] buffer = new byte[1024 * 5];
-            int size = 0;
-            long count = 0;
-            while (count != -1) {
-                System.out.println("Count is " + count);
-                size = PtoA_IS.read();
-                AtoF_FOS.write(buffer, 0, size);
+            byte[] buffer = new byte[1024 * 500];  //1024byte = 1k
+            int PtoA_ReadSize = 0;
+            int OnePicTotalSize = 0;
+            while ((PtoA_ReadSize = PtoA_IS.read(buffer))!= -1) {
+                //System.out.println("Count is " + i);//在這裡印的話就無窮迴圈了~ 雖然下面的也會跑 但是檔案很大會很久...
+                AtoF_FOS.write(buffer, 0, PtoA_ReadSize);
                 AtoF_FOS.flush();
-                count = size;
-                System.out.println("第 " + i + " 張圖片大小為 >>> " + size);
+                OnePicTotalSize = OnePicTotalSize + PtoA_ReadSize;
+                System.out.println("第 " + i + " 張圖片目前讀取和寫入大小為 --- " + PtoA_ReadSize);
             }
+            System.out.println("第 " + i + " 張圖片總大小為 >>> " + OnePicTotalSize/1024 + "K");
             PtoA_IS.close();
             AtoF_FOS.close();
         }

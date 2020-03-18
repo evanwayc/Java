@@ -19,15 +19,6 @@ public class Clinet_JFrame extends javax.swing.JFrame {
         try {
             File_Socket = new Socket("localhost", 999);
             Show.setText(Show.getText() + "\n" + "File_Socket 999 與Server連線中...");
-
-        } catch (IOException ex) {
-            Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            Msg_Socket = new Socket("localhost", 888);
-            Show.setText(Show.getText() + "\n" + "Msg_Socket 888 與Server連線中...");
-
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
