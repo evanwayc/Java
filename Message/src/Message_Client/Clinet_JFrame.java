@@ -13,12 +13,16 @@ public class Clinet_JFrame extends javax.swing.JFrame {
     Socket Msg_Socket = null;
     Socket File_Socket = null;
 
+    int Msg_Port = 888;
+    int File_Port = 999;
+
     public Clinet_JFrame() {
         initComponents();
 
         try {
-            File_Socket = new Socket("localhost", 999);
-            Show.setText(Show.getText() + "\n" + "File_Socket 999 與Server連線中...");
+            Msg_Socket = new Socket("localhost", Msg_Port);
+            Show.setText(Show.getText() + "\n" + "Msg_Socket 999 與Server連線中...");
+            new Clinet_ReceiveMsg_DS_Thread(Msg_Socket).start();
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -109,8 +113,8 @@ public class Clinet_JFrame extends javax.swing.JFrame {
     private void SendFileBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFileBActionPerformed
 
         try {
-            File_Socket = new Socket("localhost", 999);
-            Show.setText(Show.getText() + "\n" + "File_Socket 888 與Server連線中...");
+            File_Socket = new Socket("localhost", File_Port);
+            Show.setText(Show.getText() + "\n" + "File_Socket 999 與Server連線中...");
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
