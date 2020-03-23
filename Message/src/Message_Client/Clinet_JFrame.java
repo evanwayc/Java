@@ -19,10 +19,11 @@ public class Clinet_JFrame extends javax.swing.JFrame {
     public Clinet_JFrame() {
         initComponents();
 
+        //開啟後一直接收訊息
         try {
             Msg_Socket = new Socket("localhost", Msg_Port);
-            Show.setText(Show.getText() + "\n" + "Msg_Socket 999 與Server連線中...");
-            new Clinet_ReceiveMsg_DS_Thread(Msg_Socket).start();
+            Show_Area.setText(Show_Area.getText() + "\n" + "Msg_Socket 999 與Server連線中...");
+            new Clinet_ReceiveMsg_DS_Thread(Msg_Socket, Show_Area).start();
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -31,8 +32,7 @@ public class Clinet_JFrame extends javax.swing.JFrame {
 
     public void SendMsg() {
         String InputMsg = MsgTF.getText().trim();
-        String GetMsg = Clinet_SendMsg_DS.ClinetSendMsg(Msg_Socket, InputMsg);
-        Show.setText(Show.getText() + "\n" + GetMsg);
+        Clinet_SendMsg_DS.ClinetSendMsg(Msg_Socket, InputMsg);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Clinet_JFrame extends javax.swing.JFrame {
         SendMsgB = new javax.swing.JButton();
         SendFileB = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Show = new javax.swing.JTextArea();
+        Show_Area = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client");
@@ -67,9 +67,9 @@ public class Clinet_JFrame extends javax.swing.JFrame {
             }
         });
 
-        Show.setColumns(20);
-        Show.setRows(5);
-        jScrollPane1.setViewportView(Show);
+        Show_Area.setColumns(20);
+        Show_Area.setRows(5);
+        jScrollPane1.setViewportView(Show_Area);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +114,7 @@ public class Clinet_JFrame extends javax.swing.JFrame {
 
         try {
             File_Socket = new Socket("localhost", File_Port);
-            Show.setText(Show.getText() + "\n" + "File_Socket 999 與Server連線中...");
+            Show_Area.setText(Show_Area.getText() + "\n" + "File_Socket 999 與Server連線中...");
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,7 +178,7 @@ public class Clinet_JFrame extends javax.swing.JFrame {
     private javax.swing.JTextField MsgTF;
     private javax.swing.JButton SendFileB;
     private javax.swing.JButton SendMsgB;
-    private javax.swing.JTextArea Show;
+    private javax.swing.JTextArea Show_Area;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

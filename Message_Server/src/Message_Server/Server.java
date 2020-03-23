@@ -35,7 +35,8 @@ public class Server {
             this.socket = socket;
         }
 
-        public void run() {
+        public void run() {                
+            
             OutputStream os = null;
             DataOutputStream dos = null;
             try {
