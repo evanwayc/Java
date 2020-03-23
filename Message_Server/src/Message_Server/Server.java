@@ -45,6 +45,7 @@ public class Server {
                 allOut.add(dos);
                 InputStream is = socket.getInputStream();
                 DataInputStream dis = new DataInputStream(is);
+                
                 String message = null;
                 while ((message = dis.readUTF()) != null) {
                     for (DataOutputStream o : allOut) {

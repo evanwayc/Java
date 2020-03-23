@@ -27,7 +27,6 @@ public class Clinet_JFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Clinet_JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void SendMsg() {

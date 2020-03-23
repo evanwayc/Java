@@ -34,3 +34,9 @@
 /OMDB/build/
 /OMDB/dist/
 /Message_Server/dist/
+/Msg_Server/nbproject/private/
+/Msg_Server/build/
+/Msg_Server/dist/
+/Msg_Client/nbproject/private/
+/Msg_Client/build/
+/Msg_Client/dist/
