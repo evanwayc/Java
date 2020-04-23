@@ -106,9 +106,9 @@ public class Msg_Client_JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_msg_InputActionPerformed
 
     private void sendMsg_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMsg_BActionPerformed
-        // TODO add your handling code here:
         String msg = msg_Input.getText();
-        new Msg_SendMsg_Thread(msg_s,msg);
+        new Msg_SendMsg_Thread(msg_s, msg);
+        System.out.println("button clicked");
     }//GEN-LAST:event_sendMsg_BActionPerformed
 
     /**

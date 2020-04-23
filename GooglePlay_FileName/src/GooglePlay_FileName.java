@@ -8,40 +8,61 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
     String Language;
     String ID;
     String FinalString;
+    String CheckBuruIn;
+    String CheckMLP;
+
+    public void checkSelect() {
+        if (jCheckBox_BurnIn.isSelected()) {
+            CheckBuruIn = "Forced";
+        } else {
+            CheckBuruIn = "Fully";
+        }
+
+        if (jCheckBox_MLP.isSelected()) {
+            CheckMLP = "MLP_";
+        } else {
+            CheckMLP = "";
+        }
+    }
 
     public void goChange() {
-        if (!jTextFieldName.getText().equals("")){
-            Name = jTextFieldName.getText();
+        //先執行勾選判斷
+        checkSelect();
+
+        if (!jTextFieldName.getText().equals("")) {
+            Name = jTextFieldName.getText().trim();
         } else {
             Name = "(片名)";
         }
-        
-        if (!jTextFieldLanguage.getText().equals("")){
-            Language = jTextFieldLanguage.getText();
+
+        if (!jTextFieldLanguage.getText().equals("")) {
+            Language = jTextFieldLanguage.getText().trim();
         } else {
             Language = "(發音)";
         }
-        
-        if (!jTextFieldID.getText().equals("")){
-            ID = jTextFieldID.getText();
+
+        if (!jTextFieldID.getText().equals("")) {
+            ID = jTextFieldID.getText().trim();
         } else {
             ID = "(ContentID)";
         }
-        
+
         FinalString = "AVJET_" + Name + "_cmn-TW_PosterArt_" + ID + "\n"
                 + "\n"
                 + "AVJET_" + Name + "_cmn-TW_Forced_" + ID + "\n"
                 + "\n"
                 + "AVJET_" + Name + "_cmn-TW_Full_" + ID + "\n"
                 + "\n"
-                + "AVJET_" + Name + "_" + Language + "_Fully_Feature_" + ID + "\n"
+                + "AVJET_" + CheckMLP + Name + "_" + Language + "_" + CheckBuruIn + "_Feature_" + ID + "\n"
                 + "\n"
-                + "AVJET_" + Name + "_" + Language + "_Sub_Trailer_" + ID + "";
+                + "AVJET_" + Name + "_" + Language + "_Sub_Trailer_" + ID;
         jTextArea1.setText(FinalString);
     }
 
     public GooglePlay_FileName() {
         initComponents();
+
+        //定義打開後視窗顯示在螢幕的初始位置
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((int) (screenSize.getWidth() - getWidth()) / 2, (int) (screenSize.getHeight() - getHeight()) / 2);
     }
@@ -69,6 +90,8 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jCheckBox_BurnIn = new javax.swing.JCheckBox();
+        jCheckBox_MLP = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Google Play - File Name");
@@ -127,27 +150,28 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("新細明體", 1, 12)); // NOI18N
         jLabel5.setText("預告：");
 
+        jCheckBox_BurnIn.setText("Burn In - 字幕");
+        jCheckBox_BurnIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_BurnInActionPerformed(evt);
+            }
+        });
+
+        jCheckBox_MLP.setText("MLP - 多語言音軌");
+        jCheckBox_MLP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_MLPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jButtonClean))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabelLanguage)
@@ -156,21 +180,39 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox_BurnIn)
+                                    .addComponent(jCheckBox_MLP)))
+                            .addComponent(jButtonClean)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelName))
+                    .addComponent(jLabelName)
+                    .addComponent(jCheckBox_BurnIn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLanguage))
+                    .addComponent(jLabelLanguage)
+                    .addComponent(jCheckBox_MLP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,7 +221,7 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
                 .addComponent(jButtonClean)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(26, 26, 26)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
@@ -189,11 +231,11 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addContainerGap(76, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
 
         pack();
@@ -204,6 +246,10 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
         jTextFieldName.setText("");
         jTextFieldLanguage.setText("");
         jTextFieldID.setText("");
+        jCheckBox_BurnIn.setSelected(false);
+        jCheckBox_MLP.setSelected(false);
+
+        checkSelect();
 
         FinalString = "AVJET_(片名)_cmn-TW_PosterArt_(ContentID)\n"
                 + "\n"
@@ -211,7 +257,7 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
                 + "\n"
                 + "AVJET_(片名)_cmn-TW_Full_(ContentID)\n"
                 + "\n"
-                + "AVJET_(片名)_(發音)_Fully_Feature_(ContentID)\n"
+                + "AVJET_" + CheckMLP + "(片名)_(發音)_" + CheckBuruIn + "_Feature_(ContentID)\n"
                 + "\n"
                 + "AVJET_(片名)_(發音)_Sub_Trailer_(ContentID)";
         jTextArea1.setText(FinalString);
@@ -231,6 +277,16 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
         // TODO add your handling code here:
         goChange();
     }//GEN-LAST:event_jTextFieldIDKeyReleased
+
+    private void jCheckBox_BurnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_BurnInActionPerformed
+        // TODO add your handling code here:
+        goChange();
+    }//GEN-LAST:event_jCheckBox_BurnInActionPerformed
+
+    private void jCheckBox_MLPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_MLPActionPerformed
+        // TODO add your handling code here:
+        goChange();
+    }//GEN-LAST:event_jCheckBox_MLPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +325,8 @@ public class GooglePlay_FileName extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClean;
+    private javax.swing.JCheckBox jCheckBox_BurnIn;
+    private javax.swing.JCheckBox jCheckBox_MLP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

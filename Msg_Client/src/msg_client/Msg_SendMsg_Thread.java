@@ -28,6 +28,7 @@ public class Msg_SendMsg_Thread extends Thread {
             }
             dos.writeUTF(msg);
             dos.flush();
+            System.out.println("send!!!!");
         } catch (IOException ex) {
             Logger.getLogger(Msg_SendMsg_Thread.class.getName()).log(Level.SEVERE, null, ex);
         }

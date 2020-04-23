@@ -45,8 +45,11 @@ public class OMDB {
 
             };
             final String responseBody = httpclient.execute(httpget, responseHandler);
+            
+            
             System.out.println("----------------------------------------");
             System.out.println(responseBody);
+            System.out.println("----------------------------------------");
 
             JSONObject jsons = new JSONObject(responseBody);
             System.out.println(">>>>  " + jsons.getString("Title")); //得到名稱

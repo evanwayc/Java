@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package omdb;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -17,14 +12,10 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.ListModel;
 
-/**
- *
- * @author evan
- */
+
 public class OMDB_JFrame extends javax.swing.JFrame {
-    
+
     ArrayList<Movie> movieList;
 
     /**
@@ -32,11 +23,11 @@ public class OMDB_JFrame extends javax.swing.JFrame {
      */
     public OMDB_JFrame() {
         initComponents();
-        
+
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("message", locale);
         jButton1.setText(rb.getString("title"));
-        
+
         DefaultListModel DLM = new DefaultListModel();
         jList1.setModel(DLM);
     }
@@ -144,9 +135,9 @@ public class OMDB_JFrame extends javax.swing.JFrame {
         Driver d = new Driver();
         String result = d.getSearchResult(jTextField1.getText());
         movieList = d.parseMovie(result);
-        
+
         DefaultListModel LM = new DefaultListModel();
-        
+
         for (Movie m : movieList) {
             LM.addElement(m.getTitle() + " (" + m.getYear() + ")");
         }
@@ -156,7 +147,7 @@ public class OMDB_JFrame extends javax.swing.JFrame {
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
         int idx = jList1.getSelectedIndex();
-        
+
         jLabel1.setText(movieList.get(idx).getImageUrl());
         BufferedImage img = null;
         try {
@@ -166,10 +157,10 @@ public class OMDB_JFrame extends javax.swing.JFrame {
         }
         ImageIcon icon = new ImageIcon(img);
         jLabel1.setIcon(icon);
-        
+
         jLabel2.setText(movieList.get(idx).getTitle());
         jLabel3.setText(movieList.get(idx).getYear());
-        
+
 
     }//GEN-LAST:event_jList1ValueChanged
 
