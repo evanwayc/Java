@@ -17,7 +17,6 @@ import org.json.JSONObject;
 
 public class Driver {
 
-    
     //透過OMDB-API 取得資料的JSON
     public String getSearchResult(String title) {
         String responseBody = null;
@@ -44,6 +43,7 @@ public class Driver {
                 }
             };
             responseBody = httpclient.execute(httpget, responseHandler);
+            //印出結果來驗證一下
             System.out.println("----------------------------------------");
             System.out.println(responseBody);
         } catch (Exception e) {
@@ -52,8 +52,6 @@ public class Driver {
         return responseBody;
     }
 
-    
-    
     //透過JSONObject的外掛，解析JSON
     public ArrayList<Movie> parseMovie(String responseBody) {
         ArrayList<Movie> result = new ArrayList<>();
@@ -89,30 +87,5 @@ public class Driver {
 //        String result = driver.getSearchResult("superman");
 //        ArrayList<Movie> movieList = driver.parseMovie(result);
 
-        MyRunnable mr = new MyRunnable();
-        Thread t2 = new Thread(mr);
-        t2.start();
-
-        Thread t3 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("hello from Anonymous.run()");
-            }
-        });
-        t3.start();
-
-        Thread t4 = new Thread(()
-                -> System.out.println("hello from Lambda.run()")
-        );
-        t4.start();
     }
-}
-
-class MyRunnable implements Runnable {
-
-    @Override
-    public void run() {
-        System.out.println("hello");
-    }
-
 }
